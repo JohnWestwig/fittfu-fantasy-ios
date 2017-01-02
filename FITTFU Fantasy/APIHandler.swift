@@ -13,11 +13,12 @@ class APIHandler: NSObject {
     enum HTTPMethod {
         case GET
         case POST
+        case DELETE
     }
     
     let baseURL = "http://localhost:8000"
     
-    func makeHTTPRequest(path: String, method: HTTPMethod, data: [String:String], onCompleted: (AnyObject, NSURLResponse?, NSError?) -> Void) {
+    func makeHTTPRequest(path: String, method: HTTPMethod, data: [String:String]?, onCompleted: (AnyObject, NSURLResponse?, NSError?) -> Void) {
         let url: NSURL = NSURL(string: baseURL + path)!
         let session = NSURLSession.sharedSession()
         
@@ -27,17 +28,23 @@ class APIHandler: NSObject {
                 request.HTTPMethod = "GET"
             case HTTPMethod.POST:
                 request.HTTPMethod = "POST"
+            case HTTPMethod.DELETE:
+                request.HTTPMethod = "DELETE"
         }
         
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        if let token = getAPIToken() {
+            request.addValue(token, forHTTPHeaderField: "x-token")
+        }
         
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(data, options: [])
-            print(request.HTTPBody)
-        } catch let jsonError as NSError {
-            print("JSON creation error", jsonError)
+        if (data != nil) {
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(data!, options: [])
+            } catch let jsonError as NSError {
+                print("JSON creation error", jsonError)
+            }
         }
         
         let task = session.dataTaskWithRequest(request) {
@@ -57,5 +64,11 @@ class APIHandler: NSObject {
         }
         
         task.resume()
+    }
+    
+    private func getAPIToken() -> String? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.stringForKey("token")
+        return token
     }
 }

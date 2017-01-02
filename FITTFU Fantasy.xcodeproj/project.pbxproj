@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E631E18BEE700A2DECC /* AppDelegate.swift */; };
-		52032E661E18BEE700A2DECC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E651E18BEE700A2DECC /* ViewController.swift */; };
+		52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E651E18BEE700A2DECC /* LoginViewController.swift */; };
 		52032E691E18BEE700A2DECC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52032E671E18BEE700A2DECC /* Main.storyboard */; };
 		52032E6B1E18BEE700A2DECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52032E6A1E18BEE700A2DECC /* Assets.xcassets */; };
 		52032E6E1E18BEE700A2DECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */; };
 		52032E791E18BEE700A2DECC /* FITTFU_FantasyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E781E18BEE700A2DECC /* FITTFU_FantasyTests.swift */; };
 		52032E841E18BEE700A2DECC /* FITTFU_FantasyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */; };
 		52032E921E18D57900A2DECC /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E911E18D57900A2DECC /* APIHandler.swift */; };
+		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
+		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		52032E601E18BEE700A2DECC /* FITTFU Fantasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FITTFU Fantasy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52032E631E18BEE700A2DECC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52032E651E18BEE700A2DECC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52032E651E18BEE700A2DECC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		52032E681E18BEE700A2DECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52032E6A1E18BEE700A2DECC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52032E6D1E18BEE700A2DECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITTFU_FantasyUITests.swift; sourceTree = "<group>"; };
 		52032E851E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52032E911E18D57900A2DECC /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				52032E631E18BEE700A2DECC /* AppDelegate.swift */,
-				52032E651E18BEE700A2DECC /* ViewController.swift */,
+				52032E651E18BEE700A2DECC /* LoginViewController.swift */,
 				52032E671E18BEE700A2DECC /* Main.storyboard */,
 				52032E6A1E18BEE700A2DECC /* Assets.xcassets */,
 				52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */,
 				52032E6F1E18BEE700A2DECC /* Info.plist */,
 				52032E911E18D57900A2DECC /* APIHandler.swift */,
+				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
+				5280A2F01E19C95500F72C65 /* LineupViewController.swift */,
 			);
 			path = "FITTFU Fantasy";
 			sourceTree = "<group>";
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */,
 				52032E921E18D57900A2DECC /* APIHandler.swift in Sources */,
-				52032E661E18BEE700A2DECC /* ViewController.swift in Sources */,
+				52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */,
 				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
+				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +496,7 @@
 				52032E8A1E18BEE700A2DECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52032E8B1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +505,7 @@
 				52032E8D1E18BEE700A2DECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52032E8E1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +514,7 @@
 				52032E901E18BEE700A2DECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

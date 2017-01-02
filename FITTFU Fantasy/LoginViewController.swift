@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     //MARK: Properties
 
@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.view.backgroundColor = UIColor.
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -31,12 +33,30 @@ class ViewController: UIViewController {
         //First, get e-mail and password from associated text fields
         let email = emailTextField.text
         let password = passwordTextField.text
+        
+        if (email == nil || password == nil) {
+            return;
+        }
+        
         let data: [String:String] = ["email": email!, "password": password!]
         
         APIHandler().makeHTTPRequest("/login", method: APIHandler.HTTPMethod.POST, data: data, onCompleted: {
             (data: AnyObject, response: NSURLResponse?, error: NSError?) in
             //TODO Move to next view
-            print(data)
+            let success = data["success"] as! Bool
+            if (success) {
+                //Save token:
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(data["token"], forKey: "token")
+                
+                //Move to next view:
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.performSegueWithIdentifier("gotoHomepageView", sender: nil)
+                }
+            } else {
+                print("FAILURE")
+            }
+
         })
     }
 
