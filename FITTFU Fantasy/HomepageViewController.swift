@@ -34,19 +34,15 @@ class HomepageViewController: UIViewController, UITableViewDataSource, UITableVi
         lineupTable.delegate = self
         lineupTable.dataSource = self
         
-        
-        
-        print(self.navigationController)
-        
-        APIHandler().makeHTTPRequest("/api/lineups", method: APIHandler.HTTPMethod.GET, data: nil, onCompleted: {
-            (data: AnyObject, response: NSURLResponse?, error: NSError?) in
+        APIHandler().makeHTTPRequest("/api/lineups", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
             let lineups = data["lineups"] as! [AnyObject]
             for lineup in lineups {
                 let lineupId = lineup["id"] as! Int
                 let lineupName = lineup["name"] as! String
                 self.myLineups.append(lineupItem(id: lineupId, name: lineupName))
             }
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.lineupTable.reloadData()
             })
         })
@@ -58,33 +54,33 @@ class HomepageViewController: UIViewController, UITableViewDataSource, UITableVi
         //test
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)   {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)   {
         if (segue.identifier == "gotoLineupView") {
-            let destinationLineupView = segue.destinationViewController as! LineupViewController
+            let destinationLineupView = segue.destination as! LineupViewController
             let indexPath = self.lineupTable.indexPathForSelectedRow
             destinationLineupView.myLineupId = self.myLineups[indexPath!.row].id
             destinationLineupView.myLineupName = self.myLineups[indexPath!.row].name
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myLineups.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("lineupCell", forIndexPath: indexPath) as! LineupTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "lineupCell", for: indexPath) as! LineupTableViewCell
         cell.lineupName.text = myLineups[indexPath.row].name
         return cell;
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("gotoLineupView", sender: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "gotoLineupView", sender: nil)
     }
     
     
     // UITableViewDelegate Functions
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     

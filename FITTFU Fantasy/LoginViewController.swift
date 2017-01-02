@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     }
     //MARK: Actions
     
-    @IBAction func loginButton(sender: UIButton) {
+    @IBAction func loginButton(_ sender: UIButton) {
         //First, get e-mail and password from associated text fields
         let email = emailTextField.text
         let password = passwordTextField.text
@@ -40,18 +40,17 @@ class LoginViewController: UIViewController {
         
         let data: [String:String] = ["email": email!, "password": password!]
         
-        APIHandler().makeHTTPRequest("/login", method: APIHandler.HTTPMethod.POST, data: data, onCompleted: {
-            (data: AnyObject, response: NSURLResponse?, error: NSError?) in
-            //TODO Move to next view
-            let success = data["success"] as! Bool
-            if (success) {
+        APIHandler().makeHTTPRequest("/login", method: APIHandler.HTTPMethod.post, data: data, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
+            let httpResponse = response as! HTTPURLResponse
+            if (httpResponse.statusCode == 200) {
                 //Save token:
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(data["token"], forKey: "token")
+                let defaults = UserDefaults.standard
+                defaults.set(data["token"] ?? "Invalid token", forKey: "token")
                 
                 //Move to next view:
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                    self.performSegueWithIdentifier("gotoHomepageView", sender: nil)
+                OperationQueue.main.addOperation {
+                    self.performSegue(withIdentifier: "gotoHomepageView", sender: nil)
                 }
             } else {
                 print("FAILURE")

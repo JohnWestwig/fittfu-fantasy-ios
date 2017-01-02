@@ -13,6 +13,7 @@ class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerDetails: UILabel!
     @IBOutlet weak var playerImage: UIImageView!
+    @IBOutlet weak var playerOwnedMarker: UILabel!
 }
 
 class LineupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
@@ -24,7 +25,8 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         var last_name: String
         var year: String
         var nickname: String
-        var image: NSURL?
+        var image: URL?
+        var owned: Bool = false
     }
     
     var myLineupId: Int = -1
@@ -57,21 +59,21 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadData() {
-        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description, method: APIHandler.HTTPMethod.GET, data: nil, onCompleted: {
-            (data: AnyObject, response: NSURLResponse?, error: NSError?) in
+        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description, method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
             let lineup = data["lineup"] as! [String:AnyObject]
             self.myLineupName = lineup["name"] as! String
             self.myLineupMoneyTotal = lineup["money_total"] as! Int
             self.myLineupMoneySpent = lineup["money_spent"] as! Int
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.lineupMoneyRemainingLabel.text = "$" + (self.myLineupMoneyTotal - self.myLineupMoneySpent).description + " of $" + self.myLineupMoneyTotal.description + " remaining"
+            DispatchQueue.main.async(execute: {
+                self.lineupMoneyRemainingLabel.text = "$" + (self.myLineupMoneyTotal - self.myLineupMoneySpent).description + " of $" + self.myLineupMoneyTotal.description + " left"
                 self.lineupMoneyRemainingProgress.progress = Float(self.myLineupMoneySpent) / Float(self.myLineupMoneyTotal)
             })
         })
         
-        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description + "/players", method: APIHandler.HTTPMethod.GET, data: nil, onCompleted: {
-            (data: AnyObject, response: NSURLResponse?, error: NSError?) in
+        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description + "/players", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
             let players = data["players"] as! [AnyObject]
             self.myPlayers = []
             for player in players {
@@ -81,77 +83,88 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                 let playerPrice = player["price"] as! Int
                 let playerYear = player["year"] as! String
                 let playerNickname = player["nickname"] as! String
+                let playerOwned = player["owned"] as! Bool
                 if let playerImage = player["image"] as? String {
-                    let playerImageUrl = NSURL(string: playerImage)
-                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: playerImageUrl))
+                    let playerImageUrl = URL(string: playerImage)
+                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: playerImageUrl, owned: playerOwned))
                 } else {
-                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: nil))
+                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: nil, owned: playerOwned))
                 }
 
             }
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.playerTable.reloadData()
             })
-            print(self.myPlayers)
         })
         
         lineupNameLabel.text = myLineupName
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myPlayers.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as! PlayerTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerTableViewCell
         let cellData = myPlayers[indexPath.row]
         cell.playerName.text = cellData.first_name + " " + cellData.last_name
         cell.playerPrice.text = "$" + cellData.price.description
         cell.playerDetails.text = cellData.nickname + " • " + cellData.year
+        cell.playerImage.image = UIImage(named: "IconFrisbeePlayer2")
         if (cellData.image != nil) {
-            if let imageData: NSData = NSData(contentsOfURL: cellData.image!) {
-                print("Yep")
+            if let imageData: Data = try? Data(contentsOf: cellData.image!) {
                 cell.playerImage.image = UIImage(data: imageData)
-            } else {
-                print("Nope")
             }
-            print(cellData.image)
-
         }
+        cell.playerOwnedMarker.text = cellData.owned ? "\u{2713}" : ""
+        
         return cell;
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //self.performSegueWithIdentifier("gotoLineupView", sender: nil)
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == .Delete) {
-            print ("DELETING")
-        }
-    }
-    
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deletePlayerAction = UITableViewRowAction(style: .Destructive, title: "Drop") { action, index in
-            print("Player drop button clicked")
-            let playerId = self.myPlayers[indexPath.row].id
-            APIHandler().makeHTTPRequest("/api/lineups/" + self.myLineupId.description + "/players/" + playerId.description, method: APIHandler.HTTPMethod.DELETE, data: nil, onCompleted: {
-                (data: AnyObject, response: NSURLResponse?, error: NSError?) in
-                print(data)
-                self.loadData()
-            })
-        }
-        deletePlayerAction.backgroundColor = UIColor.redColor()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        return [deletePlayerAction]
+        if (myPlayers[indexPath.row].owned) {
+            let deletePlayerAction = UITableViewRowAction(style: .default, title: "Drop") { action, index in
+                let playerId = self.myPlayers[indexPath.row].id
+                APIHandler().makeHTTPRequest("/api/lineups/" + self.myLineupId.description + "/players/" + playerId.description, method: APIHandler.HTTPMethod.delete, data: nil, onCompleted: {
+                    (data: AnyObject, response: URLResponse?, error: NSError?) in
+                    self.loadData()
+                })
+            }
+            deletePlayerAction.backgroundColor = UIColor(red:0.84, green:0.14, blue:0.14, alpha:1.0)
+            
+            return [deletePlayerAction]
+        } else {
+            let addPlayerAction = UITableViewRowAction(style: .default, title: "Add") { action, index in
+                let playerId = self.myPlayers[indexPath.row].id
+                APIHandler().makeHTTPRequest("/api/lineups/" + self.myLineupId.description + "/players/" + playerId.description, method: APIHandler.HTTPMethod.post, data: nil, onCompleted: {
+                    (data: AnyObject, response: URLResponse?, error: NSError?) in
+                    let success = data["success"] as! Bool
+                    if (success) {
+                        self.loadData()
+                    } else {
+                        let alert = UIAlertController(title: "Could not insert player", message: "Double check that you have sufficient funds for this purhcase", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
+            }
+            addPlayerAction.backgroundColor = UIColor(red:0.00, green:0.50, blue:0.25, alpha:1.0)
+            
+            return [addPlayerAction]
+        }
     }
     
     
     
     // UITableViewDelegate Functions
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
 }

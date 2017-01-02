@@ -11,28 +11,28 @@ import Foundation
 class APIHandler: NSObject {
     
     enum HTTPMethod {
-        case GET
-        case POST
-        case DELETE
+        case get
+        case post
+        case delete
     }
     
     let baseURL = "http://localhost:8000"
     
-    func makeHTTPRequest(path: String, method: HTTPMethod, data: [String:String]?, onCompleted: (AnyObject, NSURLResponse?, NSError?) -> Void) {
-        let url: NSURL = NSURL(string: baseURL + path)!
-        let session = NSURLSession.sharedSession()
+    func makeHTTPRequest(_ path: String, method: HTTPMethod, data: [String:String]?, onCompleted: @escaping (AnyObject, URLResponse?, NSError?) -> Void) {
+        let url: URL = URL(string: baseURL + path)!
+        let session = URLSession.shared
         
-        let request = NSMutableURLRequest(URL: url)
+        var request = URLRequest(url: url)
         switch (method) {
-            case HTTPMethod.GET:
-                request.HTTPMethod = "GET"
-            case HTTPMethod.POST:
-                request.HTTPMethod = "POST"
-            case HTTPMethod.DELETE:
-                request.HTTPMethod = "DELETE"
+            case HTTPMethod.get:
+                request.httpMethod = "GET"
+            case HTTPMethod.post:
+                request.httpMethod = "POST"
+            case HTTPMethod.delete:
+                request.httpMethod = "DELETE"
         }
         
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let token = getAPIToken() {
@@ -41,34 +41,33 @@ class APIHandler: NSObject {
         
         if (data != nil) {
             do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(data!, options: [])
+                request.httpBody = try JSONSerialization.data(withJSONObject: data!, options: [])
             } catch let jsonError as NSError {
                 print("JSON creation error", jsonError)
             }
         }
-        
-        let task = session.dataTaskWithRequest(request) {
+        let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
             if (error == nil) {
                 do {
-                    let parsedData = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String : AnyObject]
-                    onCompleted(parsedData, response, error)
+                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as AnyObject
+                    onCompleted(parsedData, response, nil)
                 
                 } catch let jsonError as NSError {
                     print("JSON parsing error", jsonError)
                 }
             } else {
-                print("ERROR OCCURED", error)
+                print("ERROR OCCURED", error ?? "unreadable error")
             }
             
-        }
+        })
         
         task.resume()
     }
     
-    private func getAPIToken() -> String? {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let token = defaults.stringForKey("token")
+    fileprivate func getAPIToken() -> String? {
+        let defaults = UserDefaults.standard
+        let token = defaults.string(forKey: "token")
         return token
     }
 }
