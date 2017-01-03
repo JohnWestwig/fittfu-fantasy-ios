@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  FITTFU Fantasy
 //
 //  Created by John Westwig on 12/31/16.
@@ -11,11 +11,18 @@ import UIKit
 class LoginViewController: UIViewController {
     
     //MARK: Properties
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+
+    @IBOutlet weak var myEmailTextField: UITextField!
+    @IBOutlet weak var myPasswordTextField: UITextField!
+    @IBOutlet weak var myLoginButton: UIButton!
+    @IBOutlet weak var myRegisterButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Login view did load")
+        
+        //Button styling:
+        styleButtons(buttons: [myLoginButton, myRegisterButton])
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +31,8 @@ class LoginViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func loginButton(_ sender: UIButton) {
-        let email = emailTextField.text
-        let password = passwordTextField.text
+        let email = myEmailTextField.text
+        let password = myPasswordTextField.text
         
         if (email == nil || password == nil) {
             return
@@ -47,6 +54,18 @@ class LoginViewController: UIViewController {
                 //Password or username incorrect
             }
         })
+    }
+    
+    @IBAction func myRegisterButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "gotoRegisterView", sender: self)
+    }
+    
+    
+    private func styleButtons(buttons: [UIButton]) {
+        for button in buttons {
+            button.layer.cornerRadius = 10
+            button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        }
     }
 }
 

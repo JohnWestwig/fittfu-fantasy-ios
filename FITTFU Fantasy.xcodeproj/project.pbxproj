@@ -19,6 +19,8 @@
 		5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251DFA71E1B12F800019A18 /* LeagueViewController.swift */; };
 		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
 		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
+		529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */; };
+		52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		5251DFA71E1B12F800019A18 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
 		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
+		529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
 				5280A2F01E19C95500F72C65 /* LineupViewController.swift */,
 				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
+				529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */,
+				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
 			);
 			path = "FITTFU Fantasy";
 			sourceTree = "<group>";
@@ -282,6 +288,8 @@
 				52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */,
 				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
 				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
+				52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */,
+				529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

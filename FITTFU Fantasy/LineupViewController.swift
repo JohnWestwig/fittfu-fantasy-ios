@@ -109,14 +109,18 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         cell.playerName.text = cellData.first_name + " " + cellData.last_name
         cell.playerPrice.text = "$" + cellData.price.description
         cell.playerDetails.text = cellData.nickname + " • " + cellData.year
-        cell.playerImage.image = UIImage(named: "IconFrisbeePlayer2")
+        cell.playerImage.image = UIImage(named: "IconDefaultProfile")
         if (cellData.image != nil) {
             if let imageData: Data = try? Data(contentsOf: cellData.image!) {
                 cell.playerImage.image = UIImage(data: imageData)
             }
         }
-        cell.playerOwnedMarker.text = cellData.owned ? "\u{2713}" : ""
+        cell.playerImage.layer.cornerRadius = cell.playerImage.frame.size.height / 2
+        cell.playerImage.layer.borderWidth = 2
+        cell.playerImage.layer.borderColor = UIColor(red:0.25, green:0.49, blue:0.76, alpha:1.0).cgColor
+        cell.playerImage.clipsToBounds = true
         
+        cell.playerOwnedMarker.text = cellData.owned ? "\u{2713}" : ""
         return cell;
     }
     

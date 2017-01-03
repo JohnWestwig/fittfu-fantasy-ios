@@ -28,6 +28,8 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Lineup view did load")
+        
         myLeagueTable.delegate = self
         myLeagueTable.dataSource = self
         
@@ -84,6 +86,9 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     
     //MARK: Actions
     
+    @IBAction func myAddLeagueButtonClicked(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "gotoLeagueSearchView", sender: sender)
+    }
     
     
 }

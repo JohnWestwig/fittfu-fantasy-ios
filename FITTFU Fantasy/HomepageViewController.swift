@@ -26,7 +26,7 @@ class HomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         APIHandler().makeHTTPRequest("/api/leagues/" + myLeagueId.description + "/weeks/current", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
             (data: AnyObject, response: URLResponse?, error: NSError?) in
             let httpResponse = response as! HTTPURLResponse

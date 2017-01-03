@@ -51,7 +51,10 @@ class APIHandler: NSObject {
             (data, response, error) in
             if (error == nil) {
                 do {
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as AnyObject
+                    var parsedData:AnyObject = [] as AnyObject
+                    if (data != nil && data!.count > 0) {
+                        parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as AnyObject
+                    }
                     onCompleted(parsedData, response, nil)
                 
                 } catch let jsonError as NSError {
@@ -60,7 +63,6 @@ class APIHandler: NSObject {
             } else {
                 print("ERROR OCCURED", error ?? "unreadable error")
             }
-            
         })
         
         task.resume()
