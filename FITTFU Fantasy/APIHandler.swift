@@ -16,7 +16,8 @@ class APIHandler: NSObject {
         case delete
     }
     
-    let baseURL = "http://localhost:8000"
+    //let baseURL = "http://localhost:8000"
+    let baseURL = "http://192.168.1.251:8000"
     
     func makeHTTPRequest(_ path: String, method: HTTPMethod, data: [String:String]?, onCompleted: @escaping (AnyObject, URLResponse?, NSError?) -> Void) {
         let url: URL = URL(string: baseURL + path)!

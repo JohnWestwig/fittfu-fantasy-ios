@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomepageViewController.swift
 //  FITTFU Fantasy
 //
 //  Created by John Westwig on 01/01/17.
@@ -8,85 +8,79 @@
 
 import UIKit
 
-class LineupTableViewCell : UITableViewCell {
-    @IBOutlet weak var lineupName: UILabel!
-}
-
-class HomepageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomepageViewController: UIViewController {
+    //MARK: Properties
     
-    struct lineupItem {
+    @IBOutlet weak var myLineupNameLabel: UILabel!
+    @IBOutlet weak var myCurrentWeekLabel: UILabel!
+    @IBOutlet weak var myLineupEditingMessageLabel: UILabel!
+    
+    struct Week {
         var id: Int
-        var name: String
-        init (id: Int, name: String) {
-            self.id = id
-            self.name = name
-        }
+        var number: Int
     }
     
-    var myLineups: Array<lineupItem> = []
-    
-    //MARK: Properties
-    @IBOutlet weak var lineupTable: UITableView!
+    var myLeagueId: Int = -1
+    var myWeek: Week?
+    var myLineupId: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        lineupTable.delegate = self
-        lineupTable.dataSource = self
-        
-        APIHandler().makeHTTPRequest("/api/lineups", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+        APIHandler().makeHTTPRequest("/api/leagues/" + myLeagueId.description + "/weeks/current", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
             (data: AnyObject, response: URLResponse?, error: NSError?) in
-            let lineups = data["lineups"] as! [AnyObject]
-            for lineup in lineups {
-                let lineupId = lineup["id"] as! Int
-                let lineupName = lineup["name"] as! String
-                self.myLineups.append(lineupItem(id: lineupId, name: lineupName))
+            let httpResponse = response as! HTTPURLResponse
+            if (httpResponse.statusCode == 200) {
+                let week = data["week"] as! [String:AnyObject]
+                self.myWeek = Week(
+                    id: week["id"] as! Int,
+                    number: week["number"] as! Int
+                )
+                
+                DispatchQueue.main.async {
+                    self.myCurrentWeekLabel.text = "Week " + self.myWeek!.number.description
+                    self.myLineupEditingMessageLabel.text = week["can_edit"] as! Int == 1 ? "Available for editing" : "Unavailable for editing at this time"
+                }
+
+                self.loadLineup()
+            } else {
+                //TODO: error handling
             }
-            DispatchQueue.main.async(execute: {
-                self.lineupTable.reloadData()
-            })
         })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        //test
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)   {
         if (segue.identifier == "gotoLineupView") {
             let destinationLineupView = segue.destination as! LineupViewController
-            let indexPath = self.lineupTable.indexPathForSelectedRow
-            destinationLineupView.myLineupId = self.myLineups[indexPath!.row].id
-            destinationLineupView.myLineupName = self.myLineups[indexPath!.row].name
+            destinationLineupView.myLineupId = myLineupId
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myLineups.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "lineupCell", for: indexPath) as! LineupTableViewCell
-        cell.lineupName.text = myLineups[indexPath.row].name
-        return cell;
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "gotoLineupView", sender: nil)
-    }
-    
-    
-    // UITableViewDelegate Functions
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        //More segues here
     }
     
     //MARK: Actions
     
-
+    @IBAction func myLineupViewClicked(_ sender: Any) {
+        //Do nothing, handled by segue.
+    }
     
+    private func loadLineup() {
+        APIHandler().makeHTTPRequest("/api/weeks/" + myWeek!.id.description + "/lineups/me", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
+            let httpResponse = response as! HTTPURLResponse
+            if (httpResponse.statusCode == 200) {
+                let lineup = data["lineup"] as! [String: AnyObject]
+                self.myLineupId = lineup["id"] as! Int
+                DispatchQueue.main.async {
+                    self.myLineupNameLabel.text = lineup["name"] as! String?
+                }
+            } else {
+                //TODO: error handling
+            }
+        })
+    }
 }
 

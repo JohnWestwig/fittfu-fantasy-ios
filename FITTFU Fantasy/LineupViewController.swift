@@ -67,6 +67,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
             self.myLineupMoneySpent = lineup["money_spent"] as! Int
             
             DispatchQueue.main.async(execute: {
+                self.lineupNameLabel.text = self.myLineupName
                 self.lineupMoneyRemainingLabel.text = "$" + (self.myLineupMoneyTotal - self.myLineupMoneySpent).description + " of $" + self.myLineupMoneyTotal.description + " left"
                 self.lineupMoneyRemainingProgress.progress = Float(self.myLineupMoneySpent) / Float(self.myLineupMoneyTotal)
             })
@@ -96,8 +97,6 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                 self.playerTable.reloadData()
             })
         })
-        
-        lineupNameLabel.text = myLineupName
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
