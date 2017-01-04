@@ -33,21 +33,13 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
         myLeagueTable.delegate = self
         myLeagueTable.dataSource = self
         
-        APIHandler().makeHTTPRequest("/api/leagues/me", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
-            (data: AnyObject, response: URLResponse?, error: NSError?) in
-            print(data)
-            let leagues = data["leagues"] as! [AnyObject]
-            for league in leagues {
-                self.myLeagues.append(leagueItem(
-                    id: league["id"] as! Int,
-                    name: league["name"] as! String
-                ))
-            }
-
-            DispatchQueue.main.async(execute: {
-                self.myLeagueTable.reloadData()
-            })
-        })
+        let nc = NotificationCenter.default // Note that default is now a property, not a method call
+        nc.addObserver(forName:Notification.Name(rawValue:"reloadLeagues"), object:nil, queue:nil) {
+            notification in
+            self.loadData()
+        }
+        
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +81,24 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func myAddLeagueButtonClicked(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "gotoLeagueSearchView", sender: sender)
     }
-    
-    
+
+    private func loadData() {
+        APIHandler().makeHTTPRequest("/api/leagues/me", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
+            print(data)
+            self.myLeagues = []
+            let leagues = data["leagues"] as! [AnyObject]
+            for league in leagues {
+                self.myLeagues.append(leagueItem(
+                    id: league["id"] as! Int,
+                    name: league["name"] as! String
+                ))
+            }
+            
+            DispatchQueue.main.async(execute: {
+                self.myLeagueTable.reloadData()
+            })
+        })
+    }
 }
 

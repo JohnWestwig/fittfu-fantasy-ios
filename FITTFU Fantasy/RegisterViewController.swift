@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     
     @IBOutlet weak var myFirstNameTextField: UITextField!
@@ -20,11 +20,34 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myFirstNameTextField.delegate = self
+        myLastNameTextField.delegate = self
+        myEmailTextField.delegate = self
+        myPasswordTextField.delegate = self
+        
         styleButtons(buttons: [myRegisterButton])
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if (textField == myFirstNameTextField) {
+            myLastNameTextField.becomeFirstResponder()
+            return false;
+        } else if (textField == myLastNameTextField) {
+            myEmailTextField.becomeFirstResponder()
+            return false;
+        } else if (textField == myEmailTextField) {
+            myPasswordTextField.becomeFirstResponder()
+            return false;
+        } else if (textField == myPasswordTextField) {
+            register()
+            return true
+        }
+        return true;
     }
     
     //MARK: Actions
@@ -34,6 +57,10 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func myRegisterButtonClicked(_ sender: UIButton) {
+        register()
+    }
+    
+    private func register() {
         let firstName = myFirstNameTextField.text
         let lastName = myLastNameTextField.text
         let email = myEmailTextField.text

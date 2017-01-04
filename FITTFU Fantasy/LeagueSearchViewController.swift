@@ -84,7 +84,7 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
                 self.joinLineup(leagueId: leagueId, lineupName: (alert?.textFields![0].text)!)
             }))
             self.present(alert, animated: true, completion: nil)
-            
+            tableView.reloadRows(at: [index], with: .none)
         }
         joinLeagueAction.backgroundColor = UIColor(red:0.25, green:0.49, blue:0.76, alpha:1.0)
         
@@ -104,16 +104,32 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
     }
     
     private func joinLineup (leagueId: Int, lineupName: String) {
+        print(leagueId)
         let data: [String: String] = ["name": lineupName]
         print(data)
         
-        APIHandler().makeHTTPRequest("/api/lineups/" + leagueId.description + "/join", method: APIHandler.HTTPMethod.post, data: data, onCompleted: {
+        APIHandler().makeHTTPRequest("/api/leagues/" + leagueId.description + "/join", method: APIHandler.HTTPMethod.post, data: data, onCompleted: {
             (data: AnyObject, response: URLResponse?, error: NSError?) in
             let httpResponse = response as! HTTPURLResponse
             if (httpResponse.statusCode == 200) {
-                print("success")
+                //Return to league view, refresh
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLeagues"), object: nil)
+                    self.dismiss(animated: true)
+                }
             } else {
-                //TODO handle errors
+                let errorCode = data["errorCode"] as! Int
+                switch (errorCode) {
+                case 1:
+                    let alert = UIAlertController(title: "Error joining", message: "You have already joined this league", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    break
+                default:
+                    break
+                }
             }
         })
     }

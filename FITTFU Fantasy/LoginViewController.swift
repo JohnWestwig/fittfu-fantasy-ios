@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
 
@@ -21,6 +21,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         print("Login view did load")
         
+        myEmailTextField.delegate = self
+        myPasswordTextField.delegate = self
+        
         //Button styling:
         styleButtons(buttons: [myLoginButton, myRegisterButton])
     }
@@ -29,8 +32,28 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == myEmailTextField {
+            myPasswordTextField.becomeFirstResponder()
+            return false
+        } else if textField == myPasswordTextField {
+            login(sender: self)
+            return true
+        }
+        return true
+    }
+    
     //MARK: Actions
     @IBAction func loginButton(_ sender: UIButton) {
+        login(sender: sender)
+    }
+    
+    @IBAction func myRegisterButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "gotoRegisterView", sender: self)
+    }
+    
+    private func login (sender: Any) {
         let email = myEmailTextField.text
         let password = myPasswordTextField.text
         
@@ -51,21 +74,36 @@ class LoginViewController: UIViewController {
                     self.performSegue(withIdentifier: "gotoLeagueView", sender: sender)
                 }
             } else {
-                //Password or username incorrect
+                let errorCode = data["errorCode"] as! Int
+                switch (errorCode) {
+                case 2: //Email
+                    self.showAlert(title: "Could not log in", message: "Email not found")
+                    break
+                case 4: //Password
+                    self.showAlert(title: "Could not log in", message: "Password incorrect")
+                    break
+                default:
+                    self.showAlert(title: "Could not log in", message: "Double check your email and password")
+                    break
+                }
             }
         })
     }
-    
-    @IBAction func myRegisterButtonClicked(_ sender: Any) {
-        performSegue(withIdentifier: "gotoRegisterView", sender: self)
-    }
-    
     
     private func styleButtons(buttons: [UIButton]) {
         for button in buttons {
             button.layer.cornerRadius = 10
             button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         }
+    }
+    
+    private func showAlert (title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
 }
 
