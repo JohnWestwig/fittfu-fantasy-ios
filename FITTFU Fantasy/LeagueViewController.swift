@@ -22,6 +22,7 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     struct leagueItem {
         var id: Int
         var name: String
+        var lineupCount: Int = 0
     }
     var myLeagues: Array<leagueItem> = []
     
@@ -62,6 +63,7 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueTableViewCell
         let cellData = myLeagues[indexPath.row]
         cell.myLeagueNameLabel.text = cellData.name
+        cell.myLeagueLineupCountLabel.text = cellData.lineupCount.description + (cellData.lineupCount == 1 ? " member" : " members")
         return cell;
     }
     
@@ -91,7 +93,8 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
             for league in leagues {
                 self.myLeagues.append(leagueItem(
                     id: league["id"] as! Int,
-                    name: league["name"] as! String
+                    name: league["name"] as! String,
+                    lineupCount: league["lineup_count"] as! Int
                 ))
             }
             

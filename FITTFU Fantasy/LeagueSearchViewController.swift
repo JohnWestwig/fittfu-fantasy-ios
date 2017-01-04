@@ -23,6 +23,7 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
     struct League {
         var id: Int
         var name: String
+        var lineupCount: Int = 0
     }
     
     var myLeagues: Array<League> = []
@@ -41,7 +42,8 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
                 for league in leagues {
                     self.myLeagues.append(League(
                         id: league["id"] as! Int,
-                        name: league["name"] as! String
+                        name: league["name"] as! String,
+                        lineupCount: league["lineup_count"] as! Int
                     ))
                 }
                 DispatchQueue.main.async {
@@ -65,7 +67,7 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueSearchCell", for: indexPath) as! LeagueSearchTableViewCell
         let cellData = myLeagues[indexPath.row]
         cell.leagueName.text = cellData.name
-        cell.leagueDetails.text = ""
+        cell.leagueDetails.text = cellData.lineupCount.description + (cellData.lineupCount == 1 ? " member" : " members")
         return cell;
     }
 
