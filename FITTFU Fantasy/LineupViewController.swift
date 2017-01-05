@@ -29,6 +29,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         var owned: Bool = false
     }
     
+    var myLeagueId: Int = -1
     var myLineupId: Int = -1
     var myLineupName: String = "My Lineup"
     var myLineupMoneyTotal: Int = 0
@@ -48,7 +49,11 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         playerTable.delegate = self
         playerTable.dataSource = self
         
-        //self.view.backgroundColor = UIColor(red:0.76, green:0.52, blue:0.25, alpha:1.0)
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:Notification.Name(rawValue:"reloadLineup"), object:nil, queue:nil) {
+            notification in
+            self.loadData()
+        }
         
         loadData()
     }
@@ -58,45 +63,15 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func loadData() {
-        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description, method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
-            (data: AnyObject, response: URLResponse?, error: NSError?) in
-            let lineup = data["lineup"] as! [String:AnyObject]
-            self.myLineupName = lineup["name"] as! String
-            self.myLineupMoneyTotal = lineup["money_total"] as! Int
-            self.myLineupMoneySpent = lineup["money_spent"] as! Int
-            
-            DispatchQueue.main.async(execute: {
-                self.lineupNameLabel.text = self.myLineupName
-                self.lineupMoneyRemainingLabel.text = "$" + (self.myLineupMoneyTotal - self.myLineupMoneySpent).description + " of $" + self.myLineupMoneyTotal.description + " left"
-                self.lineupMoneyRemainingProgress.progress = Float(self.myLineupMoneySpent) / Float(self.myLineupMoneyTotal)
-            })
-        })
-        
-        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description + "/players", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
-            (data: AnyObject, response: URLResponse?, error: NSError?) in
-            let players = data["players"] as! [AnyObject]
-            self.myPlayers = []
-            for player in players {
-                let playerId = player["id"] as! Int
-                let playerFirstName = player["first_name"] as! String
-                let playerLastName = player["last_name"] as! String
-                let playerPrice = player["price"] as! Int
-                let playerYear = player["year"] as! String
-                let playerNickname = player["nickname"] as! String
-                let playerOwned = player["owned"] as! Bool
-                if let playerImage = player["image"] as? String {
-                    let playerImageUrl = URL(string: playerImage)
-                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: playerImageUrl, owned: playerOwned))
-                } else {
-                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: nil, owned: playerOwned))
-                }
-
-            }
-            DispatchQueue.main.async(execute: {
-                self.playerTable.reloadData()
-            })
-        })
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "gotoPlayerInfoView") {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let destinationViewController = destinationNavigationController.viewControllers[0] as! PlayerInfoViewController
+            let sourceIndexPath = sender as! IndexPath
+            destinationViewController.myPlayer.id = myPlayers[sourceIndexPath.row].id
+            destinationViewController.myLineupId = myLineupId
+            destinationViewController.myLeagueId = myLeagueId
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,10 +90,6 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                 cell.playerImage.image = UIImage(data: imageData)
             }
         }
-        cell.playerImage.layer.cornerRadius = cell.playerImage.frame.size.height / 2
-        cell.playerImage.layer.borderWidth = 2
-        cell.playerImage.layer.borderColor = UIColor(red:0.25, green:0.49, blue:0.76, alpha:1.0).cgColor
-        cell.playerImage.clipsToBounds = true
         
         cell.playerOwnedMarker.text = cellData.owned ? "\u{2713}" : ""
         return cell;
@@ -162,12 +133,59 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "gotoPlayerInfoView", sender: indexPath)
+    }
     
     // UITableViewDelegate Functions
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    //private functions:
+    func loadData() {
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description, method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
+            let lineup = data["lineup"] as! [String:AnyObject]
+            self.myLineupName = lineup["name"] as! String
+            self.myLineupMoneyTotal = lineup["money_total"] as! Int
+            self.myLineupMoneySpent = lineup["money_spent"] as! Int
+            
+            DispatchQueue.main.async(execute: {
+                self.lineupNameLabel.text = self.myLineupName
+                self.lineupMoneyRemainingLabel.text = "$" + (self.myLineupMoneyTotal - self.myLineupMoneySpent).description + " of $" + self.myLineupMoneyTotal.description + " left"
+                self.lineupMoneyRemainingProgress.progress = Float(self.myLineupMoneySpent) / Float(self.myLineupMoneyTotal)
+                LoadingOverlay.shared.hideOverlay()
+            })
+            
+        })
+        
+        APIHandler().makeHTTPRequest("/api/lineups/" + myLineupId.description + "/players", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
+            (data: AnyObject, response: URLResponse?, error: NSError?) in
+            let players = data["players"] as! [AnyObject]
+            self.myPlayers = []
+            for player in players {
+                let playerId = player["id"] as! Int
+                let playerFirstName = player["first_name"] as! String
+                let playerLastName = player["last_name"] as! String
+                let playerPrice = player["price"] as! Int
+                let playerYear = player["year"] as! String
+                let playerNickname = player["nickname"] as! String
+                let playerOwned = player["owned"] as! Bool
+                if let playerImage = player["image"] as? String {
+                    let playerImageUrl = URL(string: playerImage)
+                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: playerImageUrl, owned: playerOwned))
+                } else {
+                    self.myPlayers.append(playerItem(id: playerId, price: playerPrice, first_name: playerFirstName, last_name: playerLastName, year: playerYear, nickname: playerNickname, image: nil, owned: playerOwned))
+                }
+                
+            }
+            DispatchQueue.main.async(execute: {
+                self.playerTable.reloadData()
+            })
+        })
     }
     
 }

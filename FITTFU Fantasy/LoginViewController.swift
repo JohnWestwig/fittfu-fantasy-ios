@@ -9,6 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    struct TokenAuth {
+        static let tokenDefault = "InvalidTokenIOS"
+        static let tokenKey = "token"
+    }
     
     //MARK: Properties
 
@@ -21,11 +25,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("Login view did load")
         
+        attemptAutoLogin()
+        
         myEmailTextField.delegate = self
         myPasswordTextField.delegate = self
         
         //Button styling:
         styleButtons(buttons: [myLoginButton, myRegisterButton])
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if (httpResponse.statusCode == 200) {
                 //Save token:
                 let defaults = UserDefaults.standard
-                defaults.set(data["token"] ?? "InvalidTokenIOS", forKey: "token")
+                defaults.set(data["token"] ?? TokenAuth.tokenDefault, forKey: TokenAuth.tokenKey)
                 //Perform segue:
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "gotoLeagueView", sender: sender)
@@ -88,6 +95,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         })
+    }
+    
+    private func attemptAutoLogin() {
+        APIHandler().makeHTTPRequest("/api/validateToken", method: APIHandler.HTTPMethod.get, data: nil) { (data, response, error) in
+            let httpResponse = response as! HTTPURLResponse
+            if (httpResponse.statusCode == 200) {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "gotoLeagueView", sender: self)
+                }
+            }
+        }
     }
     
     private func styleButtons(buttons: [UIButton]) {

@@ -10,9 +10,18 @@ import Foundation
 import UIKit
 
 class LeagueSearchTableViewCell: UITableViewCell {
+    var onJoinButtonClicked: ((UITableViewCell) -> Void)?
+    
+    //MARK: Properties
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var leagueDetails: UILabel!
     @IBOutlet weak var leagueImage: UIImageView!
+    @IBOutlet weak var leagueJoinButton: UIButton!
+    
+    //MARK: Actions
+    @IBAction func leagueJoinButtonClicked(_ sender: UIButton) {
+        onJoinButtonClicked?(self)
+    }
 }
 
 class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -68,41 +77,36 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
         let cellData = myLeagues[indexPath.row]
         cell.leagueName.text = cellData.name
         cell.leagueDetails.text = cellData.lineupCount.description + (cellData.lineupCount == 1 ? " member" : " members")
-        return cell;
-    }
-
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let joinLeagueAction = UITableViewRowAction(style: .default, title: "Join") { action, index in
-            let leagueId = self.myLeagues[indexPath.row].id
-            let leagueName = self.myLeagues[indexPath.row].name
-            
-            let alert = UIAlertController(title: "Joining " + leagueName, message: "Please name your lineup", preferredStyle: .alert)
-            alert.addTextField(configurationHandler: { (leagueName) in
-                leagueName.placeholder = "My Lineup"
-            })
-            alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {
-                [weak alert] (action) -> Void in
-                self.joinLineup(leagueId: leagueId, lineupName: (alert?.textFields![0].text)!)
-            }))
-            self.present(alert, animated: true, completion: nil)
-            tableView.reloadRows(at: [index], with: .none)
+        cell.onJoinButtonClicked = { (cell) in
+            self.presentJoinAlert(leagueId: cellData.id, leagueName: cellData.name)
         }
-        joinLeagueAction.backgroundColor = UIColor(red:0.25, green:0.49, blue:0.76, alpha:1.0)
-        
-        return [joinLeagueAction]
+        return cell;
     }
     
     // UITableViewDelegate Functions
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 75
     }
     
     //MARK: Actions
     
     @IBAction func myCancelButtonClicked(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
+    }
+    
+    //Private methods
+    
+    private func presentJoinAlert(leagueId: Int, leagueName: String) {
+        let alert = UIAlertController(title: "Joining " + leagueName, message: "Please name your lineup", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { (leagueName) in
+            leagueName.placeholder = "My Lineup"
+        })
+        alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {
+            [weak alert] (action) -> Void in
+            self.joinLineup(leagueId: leagueId, lineupName: (alert?.textFields![0].text)!)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func joinLineup (leagueId: Int, lineupName: String) {

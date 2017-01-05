@@ -57,6 +57,7 @@ class HomepageViewController: UIViewController {
         if (segue.identifier == "gotoLineupView") {
             let destinationLineupView = segue.destination as! LineupViewController
             destinationLineupView.myLineupId = myLineupId
+            destinationLineupView.myLeagueId = myLeagueId
         }
         //More segues here
     }

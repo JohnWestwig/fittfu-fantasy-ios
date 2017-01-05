@@ -16,11 +16,16 @@
 		52032E841E18BEE700A2DECC /* FITTFU_FantasyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */; };
 		52032E921E18D57900A2DECC /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E911E18D57900A2DECC /* APIHandler.swift */; };
 		521FBD041E1B354C0081A6C5 /* TODO.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 521FBD031E1B354C0081A6C5 /* TODO.rtf */; };
+		522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */; };
 		5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251DFA71E1B12F800019A18 /* LeagueViewController.swift */; };
 		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
 		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
 		529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */; };
+		52DAF2DD1E1D44FD00364F98 /* UIButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */; };
+		52DAF2DF1E1D521300364F98 /* UIImageViewRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */; };
+		52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */; };
 		52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */; };
+		52FF9CFA1E1DE92900E90DA7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +61,16 @@
 		52032E851E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52032E911E18D57900A2DECC /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		521FBD031E1B354C0081A6C5 /* TODO.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TODO.rtf; sourceTree = "<group>"; };
+		522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsLayout.swift; sourceTree = "<group>"; };
 		5251DFA71E1B12F800019A18 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
 		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
 		529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonPrimary.swift; sourceTree = "<group>"; };
+		52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewRounded.swift; sourceTree = "<group>"; };
+		52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
 		52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueSearchViewController.swift; sourceTree = "<group>"; };
+		52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +122,7 @@
 		52032E621E18BEE700A2DECC /* FITTFU Fantasy */ = {
 			isa = PBXGroup;
 			children = (
+				52DAF2DB1E1D44CC00364F98 /* UIElements */,
 				52032E631E18BEE700A2DECC /* AppDelegate.swift */,
 				52032E651E18BEE700A2DECC /* LoginViewController.swift */,
 				52032E671E18BEE700A2DECC /* Main.storyboard */,
@@ -124,6 +135,9 @@
 				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
 				529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */,
 				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
+				52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */,
+				522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */,
+				52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */,
 			);
 			path = "FITTFU Fantasy";
 			sourceTree = "<group>";
@@ -144,6 +158,15 @@
 				52032E851E18BEE700A2DECC /* Info.plist */,
 			);
 			path = "FITTFU FantasyUITests";
+			sourceTree = "<group>";
+		};
+		52DAF2DB1E1D44CC00364F98 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */,
+				52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */,
+			);
+			name = UIElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,10 +309,15 @@
 				5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */,
 				52032E921E18D57900A2DECC /* APIHandler.swift in Sources */,
 				52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */,
+				52FF9CFA1E1DE92900E90DA7 /* LoadingOverlay.swift in Sources */,
+				522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */,
 				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
 				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
+				52DAF2DF1E1D521300364F98 /* UIImageViewRounded.swift in Sources */,
 				52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */,
+				52DAF2DD1E1D44FD00364F98 /* UIButtonPrimary.swift in Sources */,
 				529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */,
+				52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

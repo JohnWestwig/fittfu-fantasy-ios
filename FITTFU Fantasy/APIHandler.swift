@@ -8,12 +8,13 @@
 
 import Foundation
 
-class APIHandler: NSObject {
+class APIHandler {
     
-    enum HTTPMethod {
-        case get
-        case post
-        case delete
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
+        case delete = "DELETE"
     }
     
     //let baseURL = "http://localhost:8000"
@@ -24,18 +25,11 @@ class APIHandler: NSObject {
         let session = URLSession.shared
         
         var request = URLRequest(url: url)
-        switch (method) {
-            case HTTPMethod.get:
-                request.httpMethod = "GET"
-            case HTTPMethod.post:
-                request.httpMethod = "POST"
-            case HTTPMethod.delete:
-                request.httpMethod = "DELETE"
-        }
-        
+        request.httpMethod = method.rawValue
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
         if let token = getAPIToken() {
             request.addValue(token, forHTTPHeaderField: "x-token")
         }
@@ -51,7 +45,7 @@ class APIHandler: NSObject {
             (data, response, error) in
             if (error == nil) {
                 do {
-                    var parsedData:AnyObject = [] as AnyObject
+                    var parsedData: AnyObject = [] as AnyObject
                     if (data != nil && data!.count > 0) {
                         parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as AnyObject
                     }
@@ -69,8 +63,6 @@ class APIHandler: NSObject {
     }
     
     fileprivate func getAPIToken() -> String? {
-        let defaults = UserDefaults.standard
-        let token = defaults.string(forKey: "token")
-        return token
+        return UserDefaults.standard.string(forKey: "token")
     }
 }
