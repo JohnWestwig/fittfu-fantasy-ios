@@ -548,7 +548,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconFrisbeePlayer2" translatesAutoresizingMaskIntoConstraints="NO" id="6zV-Oi-uAn" customClass="UIImageViewRounded" customModule="FITTFU_Fantasy" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconDefaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="6zV-Oi-uAn" customClass="UIImageViewRounded" customModule="FITTFU_Fantasy" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="5" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="uel-qZ-tLy"/>
@@ -947,6 +947,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IconFrisbeePlayer2" width="150" height="150"/>
+        <image name="IconDefaultProfile" width="50" height="50"/>
     </resources>
 </document>
