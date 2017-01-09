@@ -33,34 +33,10 @@ class PlayerStatsCollectionViewValueCell : UICollectionViewCell {
 
 class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    struct Player {
-        var id: Int = -1
-        var firstName: String = "First"
-        var lastName: String = "Last"
-        var price: Int = 0
-        var image: URL?
-        var nickname: String = "Nickname"
-        var year: String = "Year"
-        var owned: Bool = false
-    }
-    
-    struct StatsCategory {
-        var name: String
-        var value: Int
-        var count: Int
-    }
-    
-    struct WeeklyPlayerStats {
-        var weekId: Int
-        var weekNumber: Int
-        var pointTotal: Int
-        var categories: Array<StatsCategory>
-    }
-    
-    var myLeagueId: Int = -1
-    var myLineupId: Int = -1
+    var myLeague: League = League()
+    var myLineup: Lineup = Lineup()
     var myPlayer: Player = Player()
-    var myPlayerStats: Array<WeeklyPlayerStats> = []
+    var myPlayerStats: Array<WeeklyStats> = []
     
     //MARK: Properties
     @IBOutlet weak var myPlayerImage: UIImageViewRounded!
@@ -79,15 +55,11 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
         myPlayerStatsCollection.dataSource = self
         
         loadPlayerInfo()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    //Collection view data source functions:
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return myPlayerStats.count + 1
@@ -98,7 +70,6 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let row = indexPath.section
         let col = indexPath.item
         
@@ -106,7 +77,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
             //Regular old value cell:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerStatsValueCell", for: indexPath) as! PlayerStatsCollectionViewValueCell
             if (col == 1) {
-                cell.myValue.text = myPlayerStats[row - 1].pointTotal.description
+                cell.myValue.text = myPlayerStats[row - 1].total.description
                 cell.myValue.font = UIFont.boldSystemFont(ofSize: 20.0)
             } else {
                 cell.myValue.text = myPlayerStats[row - 1].categories[col - 2].value.description
@@ -140,25 +111,20 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBAction func onLineupChangeClicked(_ sender: UIButton) {
         if (myPlayer.owned) {
-            //Delete player:
-            APIHandler().makeHTTPRequest("/api/lineups/" + self.myLineupId.description + "/players/" + myPlayer.id.description, method: APIHandler.HTTPMethod.delete, data: nil, onCompleted: {
-                (data: AnyObject, response: URLResponse?, error: NSError?) in
+            APIMethods.removePlayer(lineupId: myLineup.id, playerId: myPlayer.id, onSuccess: {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
                 self.loadPlayerInfo()
+            }, onError: { (error) in
+                print(error)
             })
         } else {
-            //Add player:
-            APIHandler().makeHTTPRequest("/api/lineups/" + self.myLineupId.description + "/players/" + myPlayer.id.description, method: APIHandler.HTTPMethod.post, data: nil, onCompleted: {
-                (data: AnyObject, response: URLResponse?, error: NSError?) in
-                let success = data["success"] as! Bool
-                if (success) {
-                    self.loadPlayerInfo()
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
-                } else {
-                    let alert = UIAlertController(title: "Could not insert player", message: "Double check that you have sufficient funds for this purhcase", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
+            APIMethods.addPlayer(lineupId: myLineup.id, playerId: myPlayer.id, onSuccess: {
+                self.loadPlayerInfo()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
+            }, onError: { (error) in
+                let alert = UIAlertController(title: "Could not insert player", message: "Double check that you have sufficient funds for this purhcase", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             })
         }
     }
@@ -170,82 +136,35 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
     
     //Private functions
     private func loadPlayerInfo() {
-        APIHandler().makeHTTPRequest("/api/players/\(myPlayer.id)?lineup_id=\(myLineupId)", method: APIHandler.HTTPMethod.get, data: nil) { (data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                let playerData = data["player"] as! [String:Any]
-                self.myPlayer = Player(
-                    id: playerData["id"] as! Int,
-                    firstName: playerData["first_name"] as! String,
-                    lastName: playerData["last_name"] as! String,
-                    price: playerData["price"] as! Int,
-                    image: nil,
-                    nickname: playerData["nickname"] as! String,
-                    year: playerData["year"] as! String,
-                    owned: playerData["owned"] as! Bool
-                )
-                if let playerImage = playerData["image"] as? String {
-                    self.myPlayer.image = URL(string: playerImage)
-                }
-                
-                DispatchQueue.main.async() {
-                    let p = self.myPlayer
-                    self.myPlayerName.text = "\(p.firstName) \(p.lastName)"
-                    self.myPlayerDetails.text = "\(p.nickname) • \(p.year)"
-                    self.myPlayerPrice.text = "$\(p.price)"
-                    self.myPlayerImage.image = UIImage(named: "IconDefaultProfile")
-                    if (p.image != nil) {
-                        if let imageData: Data = try? Data(contentsOf: p.image!) {
-                            self.myPlayerImage.image = UIImage(data: imageData)
-                        }
-                    }
-                    
-                    if (p.owned) {
-                        self.myEditLineupButton.setTitle("Drop", for: .normal)
-                        self.myEditLineupButton.myCurrentTheme = Themes.danger
-                    } else {
-                        self.myEditLineupButton.setTitle("Add", for: .normal)
-                        self.myEditLineupButton.myCurrentTheme = Themes.success
+        APIMethods.getPlayer(playerId: myPlayer.id, lineupId: myLineup.id, onSuccess: { (player) in
+            self.myPlayer = player
+            DispatchQueue.main.async() {
+                let p = self.myPlayer
+                self.myPlayerName.text = "\(p.firstName) \(p.lastName)"
+                self.myPlayerDetails.text = "\(p.nickname) • \(p.year)"
+                self.myPlayerPrice.text = "$\(p.price)"
+                self.myPlayerImage.image = UIImage(named: "IconDefaultProfile")
+                if (p.image != nil) {
+                    if let imageData: Data = try? Data(contentsOf: p.image!) {
+                        self.myPlayerImage.image = UIImage(data: imageData)
                     }
                 }
-            } else {
                 
+                self.myEditLineupButton.setTitle(p.owned ? "Drop" : "Add", for: .normal)
+                self.myEditLineupButton.myCurrentTheme = p.owned ? Themes.danger : Themes.success
             }
-        }
-        APIHandler().makeHTTPRequest("/api/players/\(myPlayer.id)/weeklyStats?league_id=\(myLeagueId)", method: APIHandler.HTTPMethod.get, data: nil) {
-            (data, response, error) in
-            self.myPlayerStats = []
-
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                print(data)
-                let stats = data["stats"] as! [[String: Any]]
-                for week in stats {
-                    var categories: Array<StatsCategory> = []
-                    for category in week["categories"] as! [[String: Any]] {
-                        categories.append(StatsCategory(
-                            name: category["name"] as! String,
-                            value: category["value"] as! Int,
-                            count: category["count"] as! Int
-                        ))
-                    }
-                    
-                    self.myPlayerStats.append(WeeklyPlayerStats(
-                        weekId: week["week_id"] as! Int,
-                        weekNumber: week["week_number"] as! Int,
-                        pointTotal: week["point_total"] as! Int,
-                        categories: categories
-                    ))
-                }
-                DispatchQueue.main.async {
-                    self.myPlayerStatsCollection.reloadData()
-                }
-                
-            } else {
-                
+        }, onError: { (error) in
+            print(error)
+        })
+        
+        APIMethods.getPlayerStats(playerId: myPlayer.id, leagueId: myLeague.id, onSuccess: { (weeklyStats) in
+            self.myPlayerStats = weeklyStats
+            DispatchQueue.main.async {
+                self.myPlayerStatsCollection.reloadData()
             }
-            
-        }
+        }, onError: { (error) in
+            print(error)
+        })
     }
     
 }

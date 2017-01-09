@@ -14,8 +14,8 @@ class LeagueSearchTableViewCell: UITableViewCell {
     
     //MARK: Properties
     @IBOutlet weak var leagueName: UILabel!
-    @IBOutlet weak var leagueDetails: UILabel!
     @IBOutlet weak var leagueImage: UIImageView!
+    @IBOutlet weak var leagueDetails: UILabel!
     @IBOutlet weak var leagueJoinButton: UIButton!
     
     //MARK: Actions
@@ -29,12 +29,6 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var myLeagueSearchBar: UISearchBar!
     @IBOutlet weak var myLeagueSearchTable: UITableView!
     
-    struct League {
-        var id: Int
-        var name: String
-        var lineupCount: Int = 0
-    }
-    
     var myLeagues: Array<League> = []
     
     override func viewDidLoad() {
@@ -43,24 +37,13 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
         myLeagueSearchTable.delegate = self
         myLeagueSearchTable.dataSource = self
         
-        APIHandler().makeHTTPRequest("/api/leagues", method: APIHandler.HTTPMethod.get, data: nil, onCompleted:{
-            (data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                let leagues = data["leagues"] as! [AnyObject]
-                for league in leagues {
-                    self.myLeagues.append(League(
-                        id: league["id"] as! Int,
-                        name: league["name"] as! String,
-                        lineupCount: league["lineup_count"] as! Int
-                    ))
-                }
-                DispatchQueue.main.async {
-                    self.myLeagueSearchTable.reloadData()
-                }
-            } else {
-                //Handle errors:
+        APIMethods.getLeagues(me: false, onSuccess: { (leagues) in
+            self.myLeagues = leagues
+            DispatchQueue.main.async {
+                self.myLeagueSearchTable.reloadData()
             }
+        }, onError: { (error) in
+            print(error)
         })
     }
     
@@ -72,18 +55,16 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
         return myLeagues.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueSearchCell", for: indexPath) as! LeagueSearchTableViewCell
-        let cellData = myLeagues[indexPath.row]
-        cell.leagueName.text = cellData.name
-        cell.leagueDetails.text = cellData.lineupCount.description + (cellData.lineupCount == 1 ? " member" : " members")
+        let league = myLeagues[indexPath.row]
+        cell.leagueName.text = league.name
+        cell.leagueDetails.text = "\(league.weekCount) weeks • \(league.lineupCount) lineups"
         cell.onJoinButtonClicked = { (cell) in
-            self.presentJoinAlert(leagueId: cellData.id, leagueName: cellData.name)
+            self.presentJoinAlert(leagueId: league.id, leagueName: league.name)
         }
         return cell;
     }
-    
-    // UITableViewDelegate Functions
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
@@ -104,29 +85,15 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
         })
         alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {
             [weak alert] (action) -> Void in
-            self.joinLineup(leagueId: leagueId, lineupName: (alert?.textFields![0].text)!)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func joinLineup (leagueId: Int, lineupName: String) {
-        print(leagueId)
-        let data: [String: String] = ["name": lineupName]
-        print(data)
-        
-        APIHandler().makeHTTPRequest("/api/leagues/" + leagueId.description + "/join", method: APIHandler.HTTPMethod.post, data: data, onCompleted: {
-            (data: AnyObject, response: URLResponse?, error: NSError?) in
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                //Return to league view, refresh
+            APIMethods.joinLeague(leagueId: leagueId, lineupName: (alert?.textFields![0].text)!, onSuccess: {
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLeagues"), object: nil)
                     self.dismiss(animated: true)
                 }
-            } else {
-                let errorCode = data["errorCode"] as! Int
-                switch (errorCode) {
-                case 1:
+            }, onError: { (error) in
+                print("TESTING", error)
+                switch (error.errorCode) {
+                case 1000:
                     let alert = UIAlertController(title: "Error joining", message: "You have already joined this league", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     DispatchQueue.main.async {
@@ -136,7 +103,9 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
                 default:
                     break
                 }
-            }
-        })
+            })
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
+
 }

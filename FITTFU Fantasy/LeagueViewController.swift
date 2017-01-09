@@ -10,8 +10,8 @@ import UIKit
 
 class LeagueTableViewCell : UITableViewCell {
     @IBOutlet weak var myLeagueNameLabel: UILabel!
-    @IBOutlet weak var myLeagueLineupCountLabel: UILabel!
     @IBOutlet weak var myLeagueImageView: UIImageView!
+    @IBOutlet weak var myLeagueDetailsLabel: UILabel!
 }
 
 class LeagueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -19,28 +19,20 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var myLeagueTable: UITableView!
     
-    struct leagueItem {
-        var id: Int
-        var name: String
-        var lineupCount: Int = 0
-    }
-    var myLeagues: Array<leagueItem> = []
+    var myLeagues: Array<League> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Lineup view did load")
-        
         myLeagueTable.delegate = self
         myLeagueTable.dataSource = self
         
-        let nc = NotificationCenter.default // Note that default is now a property, not a method call
-        nc.addObserver(forName:Notification.Name(rawValue:"reloadLeagues"), object:nil, queue:nil) {
+        NotificationCenter.default.addObserver(forName:Notification.Name(rawValue: "reloadLeagues"), object: nil, queue: nil) {
             notification in
-            self.loadData()
+            self.loadLeagues()
         }
         
-        loadData()
+        loadLeagues()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +43,7 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
         if (segue.identifier == "gotoHomepageView") {
             let destinationHomepageView = segue.destination as! HomepageViewController
             let indexPath = self.myLeagueTable.indexPathForSelectedRow
-            destinationHomepageView.myLeagueId = self.myLeagues[indexPath!.row].id
+            destinationHomepageView.myLeague = self.myLeagues[indexPath!.row]
         }
     }
     
@@ -61,18 +53,15 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueTableViewCell
-        let cellData = myLeagues[indexPath.row]
-        cell.myLeagueNameLabel.text = cellData.name
-        cell.myLeagueLineupCountLabel.text = cellData.lineupCount.description + (cellData.lineupCount == 1 ? " member" : " members")
+        let league = myLeagues[indexPath.row]
+        cell.myLeagueNameLabel.text = league.name
+        cell.myLeagueDetailsLabel.text = "\(league.weekCount) weeks • \(league.lineupCount) lineups"
         return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "gotoHomepageView", sender: nil)
     }
-    
-    
-    // UITableViewDelegate Functions
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
@@ -84,23 +73,14 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
         performSegue(withIdentifier: "gotoLeagueSearchView", sender: sender)
     }
 
-    private func loadData() {
-        APIHandler().makeHTTPRequest("/api/leagues/me", method: APIHandler.HTTPMethod.get, data: nil, onCompleted: {
-            (data: AnyObject, response: URLResponse?, error: NSError?) in
-            print(data)
-            self.myLeagues = []
-            let leagues = data["leagues"] as! [AnyObject]
-            for league in leagues {
-                self.myLeagues.append(leagueItem(
-                    id: league["id"] as! Int,
-                    name: league["name"] as! String,
-                    lineupCount: league["lineup_count"] as! Int
-                ))
-            }
-            
-            DispatchQueue.main.async(execute: {
+    private func loadLeagues() {
+        APIMethods.getLeagues(me: true, onSuccess: { (leagues) in
+            self.myLeagues = leagues
+            DispatchQueue.main.async {
                 self.myLeagueTable.reloadData()
-            })
+            }
+        }, onError: { (error) in
+            print(error)
         })
     }
 }

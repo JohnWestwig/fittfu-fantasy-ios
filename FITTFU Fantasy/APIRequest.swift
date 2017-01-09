@@ -8,7 +8,10 @@
 
 import Foundation
 
-class APIHandler {
+typealias onSuccess = (AnyObject) -> Void
+typealias onError = (APIError) -> Void
+
+class APIRequest {
     
     enum HTTPMethod: String {
         case get = "GET"
@@ -17,13 +20,14 @@ class APIHandler {
         case delete = "DELETE"
     }
     
-    //let baseURL = "http://localhost:8000"
-    let baseURL = "http://192.168.1.251:8000"
+    //static let baseURL = "http://localhost:8000"
+    static let baseURL = "http://192.168.1.251:8000"
     
-    func makeHTTPRequest(_ path: String, method: HTTPMethod, data: [String:String]?, onCompleted: @escaping (AnyObject, URLResponse?, NSError?) -> Void) {
+    static func send(_ path: String, method: HTTPMethod, data: [String: String]?, onSuccess: @escaping onSuccess, onError: @escaping onError) {
         let url: URL = URL(string: baseURL + path)!
         let session = URLSession.shared
         
+        /* Setup HTTP request */
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
@@ -34,35 +38,53 @@ class APIHandler {
             request.addValue(token, forHTTPHeaderField: "x-token")
         }
         
+        /* Add in any POST data */
         if (data != nil) {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: data!, options: [])
             } catch let jsonError as NSError {
-                print("JSON creation error", jsonError)
+                print("Could not generate JSON: ", jsonError)
+                return
             }
         }
+        
+        /* Send request & process the response */
         let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
             if (error == nil) {
                 do {
+                    /* Parse data as JSON */
                     var parsedData: AnyObject = [] as AnyObject
                     if (data != nil && data!.count > 0) {
                         parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as AnyObject
                     }
-                    onCompleted(parsedData, response, nil)
+    
+                    /* Determine the HTTP response code, and call the appropriate function */
+                    let httpResponse = response as! HTTPURLResponse
+                    if (httpResponse.statusCode == 200) {
+                        onSuccess(parsedData)
+                    } else {
+                        let errorData = parsedData as! [String: Any]
+                        let apiError = APIError(
+                            statusCode: httpResponse.statusCode,
+                            errorCode: errorData["errorCode"] as! Int,
+                            message: errorData["message"] as! String,
+                            details: errorData["description"] as! String
+                        )
+                        onError(apiError)
+                    }
                 
                 } catch let jsonError as NSError {
-                    print("JSON parsing error", jsonError)
+                    print("Could not parse JSON", jsonError)
                 }
             } else {
-                print("ERROR OCCURED", error ?? "unreadable error")
+                print("URL session error: ", error ?? "Unknown URL session error")
             }
         })
-        
         task.resume()
     }
     
-    fileprivate func getAPIToken() -> String? {
+    static fileprivate func getAPIToken() -> String? {
         return UserDefaults.standard.string(forKey: "token")
     }
 }

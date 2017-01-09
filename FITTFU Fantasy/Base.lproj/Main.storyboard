@@ -143,12 +143,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32 Lineups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DK3-cZ-Fu0">
-                                                    <rect key="frame" x="24" y="30" width="70.5" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qSn-pE-wz0">
                                                     <rect key="frame" x="163" y="12" width="31" height="31"/>
                                                     <constraints>
@@ -168,6 +162,12 @@
                                                         <action selector="leagueJoinButtonClicked:" destination="7m6-5e-0g5" eventType="touchUpInside" id="R9X-Ug-drb"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Weeks • 0 Lineups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-0H-uFq">
+                                                    <rect key="frame" x="24" y="34" width="131.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qSn-pE-wz0" firstAttribute="leading" secondItem="K63-vo-uoI" secondAttribute="trailing" constant="32" id="0O4-m2-K23"/>
@@ -176,13 +176,13 @@
                                                 <constraint firstAttribute="trailing" secondItem="pkB-t1-lNa" secondAttribute="trailing" constant="16" id="GiT-dI-YTv"/>
                                                 <constraint firstItem="qSn-pE-wz0" firstAttribute="top" secondItem="SLK-Oc-eqx" secondAttribute="topMargin" constant="4" id="Khm-XP-i1Q"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="qSn-pE-wz0" secondAttribute="bottom" constant="4" id="OEE-LE-tcX"/>
-                                                <constraint firstItem="DK3-cZ-Fu0" firstAttribute="top" secondItem="K63-vo-uoI" secondAttribute="bottom" id="aKD-DQ-GA5"/>
+                                                <constraint firstItem="fSX-0H-uFq" firstAttribute="leading" secondItem="K63-vo-uoI" secondAttribute="leading" id="Psl-ZJ-ZLF"/>
+                                                <constraint firstItem="fSX-0H-uFq" firstAttribute="top" secondItem="K63-vo-uoI" secondAttribute="bottom" constant="4" id="hCw-BG-VDH"/>
                                                 <constraint firstItem="K63-vo-uoI" firstAttribute="top" secondItem="SLK-Oc-eqx" secondAttribute="topMargin" id="jnc-BT-4Fw"/>
-                                                <constraint firstItem="DK3-cZ-Fu0" firstAttribute="leading" secondItem="SLK-Oc-eqx" secondAttribute="leadingMargin" constant="16" id="nXG-hX-QbM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="leagueDetails" destination="DK3-cZ-Fu0" id="sxM-Gp-iWo"/>
+                                            <outlet property="leagueDetails" destination="fSX-0H-uFq" id="QJk-c3-TaP"/>
                                             <outlet property="leagueImage" destination="qSn-pE-wz0" id="P9m-FY-mKF"/>
                                             <outlet property="leagueJoinButton" destination="pkB-t1-lNa" id="0Oq-Ny-V9c"/>
                                             <outlet property="leagueName" destination="K63-vo-uoI" id="t0p-wC-neV"/>
@@ -349,12 +349,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32 Lineups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYM-bu-V3P">
-                                                    <rect key="frame" x="24" y="30" width="70.5" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w03-SC-JG9">
                                                     <rect key="frame" x="163" y="12" width="31" height="31"/>
                                                     <constraints>
@@ -367,20 +361,26 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Weeks • 0 Lineups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkD-1b-ntb">
+                                                    <rect key="frame" x="24" y="34" width="132" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lt1-cB-MW9" firstAttribute="leading" secondItem="x94-hb-Nl9" secondAttribute="leadingMargin" constant="16" id="2gP-Kk-BaN"/>
                                                 <constraint firstItem="w03-SC-JG9" firstAttribute="top" secondItem="x94-hb-Nl9" secondAttribute="topMargin" constant="4" id="I0I-hh-xtO"/>
-                                                <constraint firstItem="kYM-bu-V3P" firstAttribute="leading" secondItem="x94-hb-Nl9" secondAttribute="leadingMargin" constant="16" id="LUB-30-Rw5"/>
                                                 <constraint firstItem="w03-SC-JG9" firstAttribute="leading" secondItem="lt1-cB-MW9" secondAttribute="trailing" constant="32" id="S7m-4q-koJ"/>
+                                                <constraint firstItem="BkD-1b-ntb" firstAttribute="top" secondItem="lt1-cB-MW9" secondAttribute="bottom" constant="4" id="a44-xP-Il1"/>
+                                                <constraint firstItem="BkD-1b-ntb" firstAttribute="leading" secondItem="lt1-cB-MW9" secondAttribute="leading" id="jWK-H0-usQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="w03-SC-JG9" secondAttribute="bottom" constant="4" id="jYh-SI-17P"/>
                                                 <constraint firstItem="lt1-cB-MW9" firstAttribute="top" secondItem="x94-hb-Nl9" secondAttribute="topMargin" id="rjz-hE-Wqx"/>
-                                                <constraint firstItem="kYM-bu-V3P" firstAttribute="top" secondItem="lt1-cB-MW9" secondAttribute="bottom" id="yEe-rw-Orv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="myLeagueDetailsLabel" destination="BkD-1b-ntb" id="8aX-RR-n6o"/>
                                             <outlet property="myLeagueImageView" destination="w03-SC-JG9" id="J4a-ue-Lfj"/>
-                                            <outlet property="myLeagueLineupCountLabel" destination="kYM-bu-V3P" id="2tI-37-FxO"/>
                                             <outlet property="myLeagueNameLabel" destination="lt1-cB-MW9" id="GUZ-BB-zOG"/>
                                         </connections>
                                     </tableViewCell>
@@ -545,7 +545,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hup-JD-yC3" id="0o7-1a-eyc">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconDefaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="6zV-Oi-uAn" customClass="UIImageViewRounded" customModule="FITTFU_Fantasy" customModuleProvider="target">

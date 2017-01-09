@@ -68,7 +68,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let data: [String:String] = ["email": email!, "password": password!]
+        APIMethods.login(email: email!, password: password!, onSuccess: { (token) in
+            UserDefaults.standard.set(token, forKey: TokenAuth.tokenKey)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "gotoLeagueView", sender: sender)
+            }
+        }, onError: { (error) in
+            print(error)
+        })
+        
+        /*let data: [String:String] = ["email": email!, "password": password!]
         APIHandler().makeHTTPRequest("/login", method: APIHandler.HTTPMethod.post, data: data, onCompleted: {
             (data: AnyObject, response: URLResponse?, error: NSError?) in
             let httpResponse = response as! HTTPURLResponse
@@ -94,18 +103,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     break
                 }
             }
-        })
+        })*/
     }
     
     private func attemptAutoLogin() {
-        APIHandler().makeHTTPRequest("/api/validateToken", method: APIHandler.HTTPMethod.get, data: nil) { (data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "gotoLeagueView", sender: self)
-                }
+        APIMethods.validateToken(onSuccess: {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "gotoLeagueView", sender: self)
             }
-        }
+        }, onError: {error in
+            print(error)
+        })
     }
     
     private func styleButtons(buttons: [UIButton]) {

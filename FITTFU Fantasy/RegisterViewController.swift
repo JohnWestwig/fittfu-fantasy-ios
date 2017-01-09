@@ -9,8 +9,8 @@
 import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-    //MARK: Properties
     
+    //MARK: Properties
     @IBOutlet weak var myFirstNameTextField: UITextField!
     @IBOutlet weak var myLastNameTextField: UITextField!
     @IBOutlet weak var myEmailTextField: UITextField!
@@ -24,8 +24,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         myLastNameTextField.delegate = self
         myEmailTextField.delegate = self
         myPasswordTextField.delegate = self
-        
-        styleButtons(buttons: [myRegisterButton])
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +49,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Actions
-
     @IBAction func myDoneButtonClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -70,35 +67,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let data = ["firstName" : firstName!, "lastName": lastName!, "email": email!, "password": password!]
-        print(data)
-        APIHandler().makeHTTPRequest("/register", method: APIHandler.HTTPMethod.post, data: data) { (data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
-            if (httpResponse.statusCode == 200) {
-                self.showAlert(title: "Good to go!", message: "Hit OK to proceed to login", actionClicked: {() in
-                    self.dismiss(animated: true)
-                })
-            } else {
-                let errorCode = data["errorCode"] as! Int
-                let alertTitle: String = "Could not register"
-                switch (errorCode) {
-                case 1: //Unknown error
-                    break
-                case 2: //Invalid email
-                    self.showAlert(title: alertTitle, message: "Email already in use")
-                    break
-                default: //Unknown error code
-                    break
-                }
+        APIMethods.register(email: email!, password: password!, firstName: firstName!, lastName: lastName!, onSuccess: {
+            self.showAlert(title: "Good to go!", message: "Hit OK to proceed to login", actionClicked: {() in
+                self.dismiss(animated: true)
+            })
+        }) { (error) in
+            let alertTitle: String = "Could not register"
+            switch (error.errorCode) {
+            case 1: //Unknown error
+                break
+            case 2: //Invalid email
+                self.showAlert(title: alertTitle, message: "Email already in use")
+                break
+            default: //Unknown error code
+                break
             }
-        }
-    }
-    
-    
-    private func styleButtons(buttons: [UIButton]) {
-        for button in buttons {
-            button.layer.cornerRadius = 10
-            button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         }
     }
     
@@ -111,7 +94,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             }))
             self.present(alert, animated: true, completion: nil)
         }
-
     }
 
 }

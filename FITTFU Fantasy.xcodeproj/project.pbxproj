@@ -14,9 +14,16 @@
 		52032E6E1E18BEE700A2DECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */; };
 		52032E791E18BEE700A2DECC /* FITTFU_FantasyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E781E18BEE700A2DECC /* FITTFU_FantasyTests.swift */; };
 		52032E841E18BEE700A2DECC /* FITTFU_FantasyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */; };
-		52032E921E18D57900A2DECC /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E911E18D57900A2DECC /* APIHandler.swift */; };
+		52032E921E18D57900A2DECC /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E911E18D57900A2DECC /* APIRequest.swift */; };
 		521FBD041E1B354C0081A6C5 /* TODO.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 521FBD031E1B354C0081A6C5 /* TODO.rtf */; };
 		522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */; };
+		523B62721E216D7700FE2327 /* APIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62711E216D7700FE2327 /* APIMethods.swift */; };
+		523B62751E216D9B00FE2327 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62741E216D9B00FE2327 /* League.swift */; };
+		523B62771E21733D00FE2327 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62761E21733D00FE2327 /* APIError.swift */; };
+		523B62791E22A7B300FE2327 /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62781E22A7B300FE2327 /* Week.swift */; };
+		523B627B1E22B01200FE2327 /* Lineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627A1E22B01200FE2327 /* Lineup.swift */; };
+		523B627D1E22B91A00FE2327 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627C1E22B91A00FE2327 /* Player.swift */; };
+		523B627F1E22C3BC00FE2327 /* WeeklyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */; };
 		5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251DFA71E1B12F800019A18 /* LeagueViewController.swift */; };
 		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
 		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
@@ -59,9 +66,16 @@
 		52032E7F1E18BEE700A2DECC /* FITTFU FantasyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FITTFU FantasyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITTFU_FantasyUITests.swift; sourceTree = "<group>"; };
 		52032E851E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52032E911E18D57900A2DECC /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		52032E911E18D57900A2DECC /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		521FBD031E1B354C0081A6C5 /* TODO.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TODO.rtf; sourceTree = "<group>"; };
 		522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsLayout.swift; sourceTree = "<group>"; };
+		523B62711E216D7700FE2327 /* APIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIMethods.swift; sourceTree = "<group>"; };
+		523B62741E216D9B00FE2327 /* League.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		523B62761E21733D00FE2327 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		523B62781E22A7B300FE2327 /* Week.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
+		523B627A1E22B01200FE2327 /* Lineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lineup.swift; sourceTree = "<group>"; };
+		523B627C1E22B91A00FE2327 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyStats.swift; sourceTree = "<group>"; };
 		5251DFA71E1B12F800019A18 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
 		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
@@ -122,22 +136,16 @@
 		52032E621E18BEE700A2DECC /* FITTFU Fantasy */ = {
 			isa = PBXGroup;
 			children = (
+				523B62731E216D8A00FE2327 /* Models */,
 				52DAF2DB1E1D44CC00364F98 /* UIElements */,
 				52032E631E18BEE700A2DECC /* AppDelegate.swift */,
-				52032E651E18BEE700A2DECC /* LoginViewController.swift */,
+				523B62801E23ED3F00FE2327 /* View Controllers */,
 				52032E671E18BEE700A2DECC /* Main.storyboard */,
 				52032E6A1E18BEE700A2DECC /* Assets.xcassets */,
 				52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */,
 				52032E6F1E18BEE700A2DECC /* Info.plist */,
-				52032E911E18D57900A2DECC /* APIHandler.swift */,
-				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
-				5280A2F01E19C95500F72C65 /* LineupViewController.swift */,
-				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
-				529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */,
-				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
-				52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */,
+				523B62701E216D3E00FE2327 /* API */,
 				522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */,
-				52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */,
 			);
 			path = "FITTFU Fantasy";
 			sourceTree = "<group>";
@@ -158,6 +166,43 @@
 				52032E851E18BEE700A2DECC /* Info.plist */,
 			);
 			path = "FITTFU FantasyUITests";
+			sourceTree = "<group>";
+		};
+		523B62701E216D3E00FE2327 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				52032E911E18D57900A2DECC /* APIRequest.swift */,
+				523B62711E216D7700FE2327 /* APIMethods.swift */,
+				523B62761E21733D00FE2327 /* APIError.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		523B62731E216D8A00FE2327 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				523B62741E216D9B00FE2327 /* League.swift */,
+				523B62781E22A7B300FE2327 /* Week.swift */,
+				523B627A1E22B01200FE2327 /* Lineup.swift */,
+				523B627C1E22B91A00FE2327 /* Player.swift */,
+				523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		523B62801E23ED3F00FE2327 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52032E651E18BEE700A2DECC /* LoginViewController.swift */,
+				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
+				5280A2F01E19C95500F72C65 /* LineupViewController.swift */,
+				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
+				529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */,
+				52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */,
+				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
+				52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		52DAF2DB1E1D44CC00364F98 /* UIElements */ = {
@@ -305,11 +350,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523B627F1E22C3BC00FE2327 /* WeeklyStats.swift in Sources */,
 				5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */,
 				5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */,
-				52032E921E18D57900A2DECC /* APIHandler.swift in Sources */,
+				52032E921E18D57900A2DECC /* APIRequest.swift in Sources */,
 				52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */,
 				52FF9CFA1E1DE92900E90DA7 /* LoadingOverlay.swift in Sources */,
+				523B62721E216D7700FE2327 /* APIMethods.swift in Sources */,
+				523B627B1E22B01200FE2327 /* Lineup.swift in Sources */,
 				522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */,
 				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
 				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
@@ -317,6 +365,10 @@
 				52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */,
 				52DAF2DD1E1D44FD00364F98 /* UIButtonPrimary.swift in Sources */,
 				529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */,
+				523B62791E22A7B300FE2327 /* Week.swift in Sources */,
+				523B62771E21733D00FE2327 /* APIError.swift in Sources */,
+				523B627D1E22B91A00FE2327 /* Player.swift in Sources */,
+				523B62751E216D9B00FE2327 /* League.swift in Sources */,
 				52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
