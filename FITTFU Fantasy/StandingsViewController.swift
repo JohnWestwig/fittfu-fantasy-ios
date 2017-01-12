@@ -110,7 +110,7 @@ class StandingsViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
     
     private func loadWeeks() {
@@ -121,6 +121,6 @@ class StandingsViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
 }

@@ -81,7 +81,7 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
 }
 

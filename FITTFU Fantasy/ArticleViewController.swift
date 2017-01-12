@@ -43,7 +43,7 @@ class ArticleViewController: UIViewController {
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
 
 }

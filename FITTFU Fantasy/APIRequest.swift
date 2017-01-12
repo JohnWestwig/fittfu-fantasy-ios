@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias onSuccess = (AnyObject) -> Void
 typealias onError = (APIError) -> Void
@@ -21,11 +22,17 @@ class APIRequest {
     }
     
     //static let baseURL = "http://localhost:8000"
-    static let baseURL = "http://192.168.1.251:8000"
+    //static let baseURL = "http://192.168.1.251:8000"
+    static let baseURL = "http://ec2-54-149-157-80.us-west-2.compute.amazonaws.com:8000"
     
-    static func send(_ path: String, method: HTTPMethod, data: [String: String]?, onSuccess: @escaping onSuccess, onError: @escaping onError) {
+    static func send(_ path: String, method: HTTPMethod, data: [String: String]?, onSuccess: @escaping onSuccess, onError: @escaping onError, senderView: UIView, showLoading: Bool = true) {
         let url: URL = URL(string: baseURL + path)!
         let session = URLSession.shared
+        
+        /* Start loading indicator */
+        if (showLoading) {
+            LoadingOverlay.shared.add(view: senderView)
+        }
         
         /* Setup HTTP request */
         var request = URLRequest(url: url)
@@ -79,6 +86,9 @@ class APIRequest {
                 }
             } else {
                 print("URL session error: ", error ?? "Unknown URL session error")
+            }
+            if (showLoading) {
+                LoadingOverlay.shared.remove()
             }
         })
         task.resume()

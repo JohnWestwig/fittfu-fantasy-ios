@@ -122,14 +122,14 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.loadPlayerInfo()
             }, onError: { (error) in
                 errorResponse(error)
-            })
+            }, senderView: self.view)
         } else {
             APIMethods.addPlayer(lineupId: myLineup.id, playerId: myPlayer.id, onSuccess: {
                 self.loadPlayerInfo()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
             }, onError: { (error) in
                 errorResponse(error)
-            })
+            }, senderView: self.view)
         }
     }
     
@@ -159,7 +159,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
         
         APIMethods.getPlayerStats(playerId: myPlayer.id, leagueId: myLeague.id, onSuccess: { (weeklyStats) in
             self.myPlayerStats = weeklyStats
@@ -168,7 +168,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
     
 }

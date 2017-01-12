@@ -231,50 +231,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cnG-BH-yZ7">
-                                <rect key="frame" x="32" y="16" width="311" height="256"/>
+                                <rect key="frame" x="32" y="16" width="311" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ob-g4-oZn">
-                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="21"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="us4-uP-rfz">
-                                        <rect key="frame" x="0.0" y="28" width="311" height="30"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Italic" family="Trebuchet MS" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="29" width="311" height="30"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWK-P8-N2i">
-                                        <rect key="frame" x="0.0" y="66" width="82.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="67" width="87.5" height="21"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9eA-vZ-Pls">
-                                        <rect key="frame" x="0.0" y="94" width="311" height="30"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Italic" family="Trebuchet MS" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="96" width="311" height="30"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJ3-ww-u7r">
-                                        <rect key="frame" x="0.0" y="132" width="43.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="134" width="46" height="21"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Mqo-8w-Kxs">
-                                        <rect key="frame" x="0.0" y="160" width="311" height="30"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Italic" family="Trebuchet MS" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="163" width="311" height="30"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-H0-nHk">
-                                        <rect key="frame" x="0.0" y="198" width="73" height="20"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="201" width="77.5" height="21"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XAo-8g-Zep">
-                                        <rect key="frame" x="0.0" y="226" width="311" height="30"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS-Italic" family="Trebuchet MS" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="230" width="311" height="30"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
@@ -286,7 +286,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djZ-bx-xbd" customClass="UIButtonPrimary" customModule="FITTFU_Fantasy" customModuleProvider="target">
-                                <rect key="frame" x="141" y="296" width="92" height="40"/>
+                                <rect key="frame" x="140.5" y="300" width="93" height="44"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.49019607840000001" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="24"/>
                                 <state key="normal" title="Register">
@@ -610,7 +610,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oPT-vg-s3H" id="ofx-6F-Ds8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TWU-PC-Crb">
@@ -848,7 +848,6 @@
         <!--Article-->
         <scene sceneID="FYM-Z7-jwV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ra3-bF-n6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="QOh-j8-hDx" customClass="ArticleViewController" customModule="FITTFU_Fantasy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gF5-gJ-PXc"/>
@@ -866,7 +865,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-dK-lWx">
                                                 <rect key="frame" x="16" y="69" width="343" height="1024"/>
-                                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor aliquet leo non vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In vehicula neque a tortor tincidunt, id elementum tellus pharetra. In elementum ex sit amet odio pretium, vitae facilisis tellus venenatis. Proin pellentesque tincidunt lectus, eget mattis odio. Vestibulum lobortis nibh id accumsan cursus. In eleifend nisl quis convallis iaculis. Vestibulum odio erat, pellentesque sed lacus tincidunt, ultricies cursus arcu. Sed enim ipsum, pellentesque in efficitur at, iaculis at purus. Vivamus et eros sit amet magna facilisis porta vel sed purus. Suspendisse elit tortor, dignissim ac orci at, consectetur viverra est. Mauris pretium, ex lacinia feugiat pretium, sem elit semper diam, vel mattis massa ipsum et lectus.
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor aliquet leo non vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In vehicula neque a tortor tincidunt, id elementum tellus pharetra. In elementum ex sit amet odio pretium, vitae facilisis tellus venenatis. Proin pellentesque tincidunt lectus, eget mattis odio. Vestibulum lobortis nibh id accumsan cursus. In eleifend nisl quis convallis iaculis. Vestibulum odio erat, pellentesque sed lacus tincidunt, ultricies cursus arcu. Sed enim ipsum, pellentesque in efficitur at, iaculis at purus. Vivamus et eros sit amet magna facilisis porta vel sed purus. Suspendisse elit tortor, dignissim ac orci at, consectetur viverra est. Mauris pretium, ex lacinia feugiat pretium, sem elit semper diam, vel mattis massa ipsum et lectus.
 
 Nullam ornare erat vel lobortis placerat. Morbi mattis erat mauris, ut finibus mi finibus vel. Suspendisse maximus, nisi et sagittis cursus, nisi libero semper magna, nec euismod metus nisl id felis. Fusce condimentum faucibus magna a porta. Donec vitae ante tincidunt, bibendum arcu et, posuere augue. Morbi quis leo vitae neque vehicula aliquet eu ut urna. Etiam pulvinar ipsum ipsum, sed pulvinar nisi dictum sit amet. Phasellus vehicula a tortor bibendum consectetur. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada bibendum metus. In blandit sem dignissim semper feugiat. Praesent iaculis cursus pulvinar.
 
@@ -874,7 +873,7 @@ Aliquam varius, arcu non fermentum mollis, mauris mi suscipit tortor, id tempor 
 
 Nulla tincidunt lectus nisi, a lobortis mauris facilisis sed. Nullam sed eros a sapien fermentum dignissim vitae in odio. Nullam mollis at tortor eget aliquam. Nullam placerat libero risus, sed sollicitudin neque volutpat ac. Mauris et aliquet diam. Duis iaculis faucibus sem, quis viverra sem rhoncus non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum in arcu non euismod. Morbi vel magna arcu. Cras at lacus rutrum, sodales nunc id, congue lacus.
 
-Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabitur justo dui, molestie quis pharetra sed, tempus vulputate arcu. Cras dignissim luctus felis ut vulputate. Etiam faucibus eros massa, et suscipit erat feugiat id. Nunc nunc erat, pulvinar ut ultrices non, volutpat sed erat. Vivamus at tellus quam. Vivamus eget risus eros. Curabitur at ligula vel sapien iaculis sollicitudin in ut nisi. Nulla suscipit justo purus. Ut convallis justo ac ipsum pretium, ac cursus nunc ultrices. Donec at ultricies purus, nec mattis est.</mutableString>
+Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabitur justo dui, molestie quis pharetra sed, tempus vulputate arcu. Cras dignissim luctus felis ut vulputate. Etiam faucibus eros massa, et suscipit erat feugiat id. Nunc nunc erat, pulvinar ut ultrices non, volutpat sed erat. Vivamus at tellus quam. Vivamus eget risus eros. Curabitur at ligula vel sapien iaculis sollicitudin in ut nisi. Nulla suscipit justo purus. Ut convallis justo ac ipsum pretium, ac cursus nunc ultrices. Donec at ultricies purus, nec mattis est.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -954,6 +953,7 @@ Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabit
                         <outlet property="myTitleLabel" destination="bd8-0R-1cl" id="HL2-9B-OGW"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ra3-bF-n6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3068" y="1211.2443778110946"/>
         </scene>
@@ -983,7 +983,7 @@ Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabit
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVF-wH-0qn" customClass="UIButtonPrimary" customModule="FITTFU_Fantasy" customModuleProvider="target">
-                                <rect key="frame" x="305" y="26" width="62" height="44"/>
+                                <rect key="frame" x="333" y="33" width="34" height="30"/>
                                 <state key="normal" title="Drop"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="myCurrentThemeAdapter" value="Danger"/>
@@ -993,7 +993,7 @@ Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabit
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Nicknamea aasdjfkh asdfhjk • Year" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="afT-1m-9A0">
-                                <rect key="frame" x="96" y="41" width="201" height="20"/>
+                                <rect key="frame" x="96" y="41" width="229" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1263,7 +1263,6 @@ Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabit
         <!--Navigation Controller-->
         <scene sceneID="01q-lh-c8N">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pEf-Df-DBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uk5-3h-ZMG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -1276,6 +1275,7 @@ Aenean pulvinar sagittis massa eu fringilla. Integer non aliquam libero. Curabit
                         <segue destination="QOh-j8-hDx" kind="relationship" relationship="rootViewController" id="T2d-wh-Ivw"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEf-Df-DBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3069.5" y="383.5"/>
         </scene>

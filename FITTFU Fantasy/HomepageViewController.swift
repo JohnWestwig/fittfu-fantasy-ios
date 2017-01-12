@@ -93,15 +93,15 @@ class HomepageViewController: UIViewController, UITableViewDelegate, UITableView
             self.loadLineup()
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
     
     private func loadLineup() {
         APIMethods.getMyLineup(weekId: myCurrentWeek.id, onSuccess: { (lineup) in
             self.myLineup = lineup
-        }) { (error) in
+        }, onError: { (error) in
             print(error)
-        }
+        }, senderView: self.view)
     }
     
     private func loadArticles() {
@@ -112,7 +112,7 @@ class HomepageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
 }
 

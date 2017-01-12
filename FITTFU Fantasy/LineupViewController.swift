@@ -96,7 +96,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                     let alert = UIAlertController(title: error.message, message: error.details, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                })
+                }, senderView: self.view)
             } else {
                 APIMethods.addPlayer(lineupId: self.myLineup.id, playerId: player.id, onSuccess: {
                     self.loadData()
@@ -104,7 +104,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                     let alert = UIAlertController(title: error.message, message: error.details, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                })
+                }, senderView: self.view)
             }
         }
         playerAction.backgroundColor = (player.owned) ?
@@ -135,7 +135,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
         
         APIMethods.getPlayers(lineupId: myLineup.id, onSuccess: { (players) in
             self.myPlayers = players
@@ -144,7 +144,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
             })
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
 }
 

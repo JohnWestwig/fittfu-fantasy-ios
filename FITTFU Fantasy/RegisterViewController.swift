@@ -10,6 +10,11 @@ import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
+    static let firstNameMaxLength = 32
+    static let lastNameMaxLength = 32
+    static let emailMaxLength = 64
+    static let passwordMaxLength = 32
+    
     //MARK: Properties
     @IBOutlet weak var myFirstNameTextField: UITextField!
     @IBOutlet weak var myLastNameTextField: UITextField!
@@ -48,6 +53,26 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return true;
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentCharacterCount = textField.text?.characters.count ?? 0
+        if (range.length + range.location > currentCharacterCount){
+            return false
+        }
+        
+        let newLength = currentCharacterCount + string.characters.count - range.length
+        if (textField == myFirstNameTextField) {
+            return newLength <= RegisterViewController.firstNameMaxLength
+        } else if (textField == myLastNameTextField) {
+            return newLength <= RegisterViewController.lastNameMaxLength
+        } else if (textField == myEmailTextField) {
+            return newLength <= RegisterViewController.emailMaxLength
+        } else if (textField == myPasswordTextField) {
+            return newLength <= RegisterViewController.passwordMaxLength
+        }
+        
+        return false
+    }
+    
     //MARK: Actions
     @IBAction func myDoneButtonClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -73,7 +98,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             })
         }, onError: { (error) in
             self.showAlert(title: error.message, message: error.details)
-        })
+        }, senderView: self.view)
     }
     
     private func showAlert (title: String, message: String, actionClicked: (() -> Void)? = {}) {

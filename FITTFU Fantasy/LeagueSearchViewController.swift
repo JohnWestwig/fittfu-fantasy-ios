@@ -44,7 +44,7 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
             }
         }, onError: { (error) in
             print(error)
-        })
+        }, senderView: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,7 +102,7 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
                 default:
                     break
                 }
-            })
+            }, senderView: self.view)
         }))
         self.present(alert, animated: true, completion: nil)
     }

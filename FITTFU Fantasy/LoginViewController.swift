@@ -15,7 +15,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Properties
-
     @IBOutlet weak var myEmailTextField: UITextField!
     @IBOutlet weak var myPasswordTextField: UITextField!
     @IBOutlet weak var myLoginButton: UIButton!
@@ -69,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }, onError: { (error) in
             self.showAlert(title: error.message, message: error.details)
-        })
+        }, senderView: self.view)
 
     }
     
@@ -80,7 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }, onError: {error in
             print(error)
-        })
+        }, senderView: self.view)
     }
     
     private func showAlert (title: String, message: String) {
