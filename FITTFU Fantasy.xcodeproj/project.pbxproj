@@ -1,0 +1,657 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E631E18BEE700A2DECC /* AppDelegate.swift */; };
+		52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E651E18BEE700A2DECC /* LoginViewController.swift */; };
+		52032E691E18BEE700A2DECC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52032E671E18BEE700A2DECC /* Main.storyboard */; };
+		52032E6B1E18BEE700A2DECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52032E6A1E18BEE700A2DECC /* Assets.xcassets */; };
+		52032E6E1E18BEE700A2DECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */; };
+		52032E791E18BEE700A2DECC /* FITTFU_FantasyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E781E18BEE700A2DECC /* FITTFU_FantasyTests.swift */; };
+		52032E841E18BEE700A2DECC /* FITTFU_FantasyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */; };
+		52032E921E18D57900A2DECC /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52032E911E18D57900A2DECC /* APIRequest.swift */; };
+		521FBD041E1B354C0081A6C5 /* TODO.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 521FBD031E1B354C0081A6C5 /* TODO.rtf */; };
+		522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */; };
+		523B62721E216D7700FE2327 /* APIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62711E216D7700FE2327 /* APIMethods.swift */; };
+		523B62751E216D9B00FE2327 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62741E216D9B00FE2327 /* League.swift */; };
+		523B62771E21733D00FE2327 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62761E21733D00FE2327 /* APIError.swift */; };
+		523B62791E22A7B300FE2327 /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B62781E22A7B300FE2327 /* Week.swift */; };
+		523B627B1E22B01200FE2327 /* Lineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627A1E22B01200FE2327 /* Lineup.swift */; };
+		523B627D1E22B91A00FE2327 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627C1E22B91A00FE2327 /* Player.swift */; };
+		523B627F1E22C3BC00FE2327 /* WeeklyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */; };
+		5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251DFA71E1B12F800019A18 /* LeagueViewController.swift */; };
+		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
+		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
+		529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */; };
+		529F0A331E26C7BD0030C078 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F0A321E26C7BD0030C078 /* ArticleViewController.swift */; };
+		52AA1B9D1E2427C400CC0CBF /* UIButtonRoundedIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA1B9C1E2427C400CC0CBF /* UIButtonRoundedIcon.swift */; };
+		52DAF2DD1E1D44FD00364F98 /* UIButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */; };
+		52DAF2DF1E1D521300364F98 /* UIImageViewRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */; };
+		52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */; };
+		52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */; };
+		52F6F69E1E256B3E002AC7FB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F69D1E256B3E002AC7FB /* Article.swift */; };
+		52F6F6A01E25B0B2002AC7FB /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F69F1E25B0B2002AC7FB /* StandingsViewController.swift */; };
+		52F6F6A21E25B756002AC7FB /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F6A11E25B756002AC7FB /* Standing.swift */; };
+		52FF9CFA1E1DE92900E90DA7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52032E751E18BEE700A2DECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52032E581E18BEE700A2DECC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52032E5F1E18BEE700A2DECC;
+			remoteInfo = "FITTFU Fantasy";
+		};
+		52032E801E18BEE700A2DECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52032E581E18BEE700A2DECC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52032E5F1E18BEE700A2DECC;
+			remoteInfo = "FITTFU Fantasy";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52032E601E18BEE700A2DECC /* FITTFU Fantasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FITTFU Fantasy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52032E631E18BEE700A2DECC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		52032E651E18BEE700A2DECC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		52032E681E18BEE700A2DECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52032E6A1E18BEE700A2DECC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52032E6D1E18BEE700A2DECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		52032E6F1E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52032E741E18BEE700A2DECC /* FITTFU FantasyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FITTFU FantasyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52032E781E18BEE700A2DECC /* FITTFU_FantasyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITTFU_FantasyTests.swift; sourceTree = "<group>"; };
+		52032E7A1E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52032E7F1E18BEE700A2DECC /* FITTFU FantasyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FITTFU FantasyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FITTFU_FantasyUITests.swift; sourceTree = "<group>"; };
+		52032E851E18BEE700A2DECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52032E911E18D57900A2DECC /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		521FBD031E1B354C0081A6C5 /* TODO.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TODO.rtf; sourceTree = "<group>"; };
+		522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsLayout.swift; sourceTree = "<group>"; };
+		523B62711E216D7700FE2327 /* APIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIMethods.swift; sourceTree = "<group>"; };
+		523B62741E216D9B00FE2327 /* League.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		523B62761E21733D00FE2327 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		523B62781E22A7B300FE2327 /* Week.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
+		523B627A1E22B01200FE2327 /* Lineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lineup.swift; sourceTree = "<group>"; };
+		523B627C1E22B91A00FE2327 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyStats.swift; sourceTree = "<group>"; };
+		5251DFA71E1B12F800019A18 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
+		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
+		529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		529F0A321E26C7BD0030C078 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		52AA1B9C1E2427C400CC0CBF /* UIButtonRoundedIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonRoundedIcon.swift; sourceTree = "<group>"; };
+		52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonPrimary.swift; sourceTree = "<group>"; };
+		52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewRounded.swift; sourceTree = "<group>"; };
+		52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
+		52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueSearchViewController.swift; sourceTree = "<group>"; };
+		52F6F69D1E256B3E002AC7FB /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		52F6F69F1E25B0B2002AC7FB /* StandingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
+		52F6F6A11E25B756002AC7FB /* Standing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
+		52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52032E5D1E18BEE700A2DECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E711E18BEE700A2DECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E7C1E18BEE700A2DECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52032E571E18BEE700A2DECC = {
+			isa = PBXGroup;
+			children = (
+				521FBD031E1B354C0081A6C5 /* TODO.rtf */,
+				52032E621E18BEE700A2DECC /* FITTFU Fantasy */,
+				52032E771E18BEE700A2DECC /* FITTFU FantasyTests */,
+				52032E821E18BEE700A2DECC /* FITTFU FantasyUITests */,
+				52032E611E18BEE700A2DECC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52032E611E18BEE700A2DECC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52032E601E18BEE700A2DECC /* FITTFU Fantasy.app */,
+				52032E741E18BEE700A2DECC /* FITTFU FantasyTests.xctest */,
+				52032E7F1E18BEE700A2DECC /* FITTFU FantasyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52032E621E18BEE700A2DECC /* FITTFU Fantasy */ = {
+			isa = PBXGroup;
+			children = (
+				523B62731E216D8A00FE2327 /* Models */,
+				52DAF2DB1E1D44CC00364F98 /* UIElements */,
+				52032E631E18BEE700A2DECC /* AppDelegate.swift */,
+				523B62801E23ED3F00FE2327 /* View Controllers */,
+				52032E671E18BEE700A2DECC /* Main.storyboard */,
+				52032E6A1E18BEE700A2DECC /* Assets.xcassets */,
+				52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */,
+				52032E6F1E18BEE700A2DECC /* Info.plist */,
+				523B62701E216D3E00FE2327 /* API */,
+				522E772A1E1DA11A00869896 /* PlayerStatsLayout.swift */,
+			);
+			path = "FITTFU Fantasy";
+			sourceTree = "<group>";
+		};
+		52032E771E18BEE700A2DECC /* FITTFU FantasyTests */ = {
+			isa = PBXGroup;
+			children = (
+				52032E781E18BEE700A2DECC /* FITTFU_FantasyTests.swift */,
+				52032E7A1E18BEE700A2DECC /* Info.plist */,
+			);
+			path = "FITTFU FantasyTests";
+			sourceTree = "<group>";
+		};
+		52032E821E18BEE700A2DECC /* FITTFU FantasyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				52032E831E18BEE700A2DECC /* FITTFU_FantasyUITests.swift */,
+				52032E851E18BEE700A2DECC /* Info.plist */,
+			);
+			path = "FITTFU FantasyUITests";
+			sourceTree = "<group>";
+		};
+		523B62701E216D3E00FE2327 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				52032E911E18D57900A2DECC /* APIRequest.swift */,
+				523B62711E216D7700FE2327 /* APIMethods.swift */,
+				523B62761E21733D00FE2327 /* APIError.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		523B62731E216D8A00FE2327 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				523B62741E216D9B00FE2327 /* League.swift */,
+				523B62781E22A7B300FE2327 /* Week.swift */,
+				523B627A1E22B01200FE2327 /* Lineup.swift */,
+				523B627C1E22B91A00FE2327 /* Player.swift */,
+				523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */,
+				52F6F69D1E256B3E002AC7FB /* Article.swift */,
+				52F6F6A11E25B756002AC7FB /* Standing.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		523B62801E23ED3F00FE2327 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				529F0A321E26C7BD0030C078 /* ArticleViewController.swift */,
+				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
+				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
+				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
+				5280A2F01E19C95500F72C65 /* LineupViewController.swift */,
+				52032E651E18BEE700A2DECC /* LoginViewController.swift */,
+				529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */,
+				52DAF2E01E1D5A0000364F98 /* PlayerInfoViewController.swift */,
+				52F6F69F1E25B0B2002AC7FB /* StandingsViewController.swift */,
+				52FF9CF91E1DE92900E90DA7 /* LoadingOverlay.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		52DAF2DB1E1D44CC00364F98 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				52DAF2DC1E1D44FD00364F98 /* UIButtonPrimary.swift */,
+				52DAF2DE1E1D521200364F98 /* UIImageViewRounded.swift */,
+				52AA1B9C1E2427C400CC0CBF /* UIButtonRoundedIcon.swift */,
+			);
+			name = UIElements;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52032E5F1E18BEE700A2DECC /* FITTFU Fantasy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52032E881E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU Fantasy" */;
+			buildPhases = (
+				52032E5C1E18BEE700A2DECC /* Sources */,
+				52032E5D1E18BEE700A2DECC /* Frameworks */,
+				52032E5E1E18BEE700A2DECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FITTFU Fantasy";
+			productName = "FITTFU Fantasy";
+			productReference = 52032E601E18BEE700A2DECC /* FITTFU Fantasy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52032E731E18BEE700A2DECC /* FITTFU FantasyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52032E8B1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyTests" */;
+			buildPhases = (
+				52032E701E18BEE700A2DECC /* Sources */,
+				52032E711E18BEE700A2DECC /* Frameworks */,
+				52032E721E18BEE700A2DECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52032E761E18BEE700A2DECC /* PBXTargetDependency */,
+			);
+			name = "FITTFU FantasyTests";
+			productName = "FITTFU FantasyTests";
+			productReference = 52032E741E18BEE700A2DECC /* FITTFU FantasyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52032E7E1E18BEE700A2DECC /* FITTFU FantasyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52032E8E1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyUITests" */;
+			buildPhases = (
+				52032E7B1E18BEE700A2DECC /* Sources */,
+				52032E7C1E18BEE700A2DECC /* Frameworks */,
+				52032E7D1E18BEE700A2DECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52032E811E18BEE700A2DECC /* PBXTargetDependency */,
+			);
+			name = "FITTFU FantasyUITests";
+			productName = "FITTFU FantasyUITests";
+			productReference = 52032E7F1E18BEE700A2DECC /* FITTFU FantasyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52032E581E18BEE700A2DECC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "John Westwig";
+				TargetAttributes = {
+					52032E5F1E18BEE700A2DECC = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = WR4R323K2L;
+						LastSwiftMigration = 0820;
+					};
+					52032E731E18BEE700A2DECC = {
+						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
+						TestTargetID = 52032E5F1E18BEE700A2DECC;
+					};
+					52032E7E1E18BEE700A2DECC = {
+						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
+						TestTargetID = 52032E5F1E18BEE700A2DECC;
+					};
+				};
+			};
+			buildConfigurationList = 52032E5B1E18BEE700A2DECC /* Build configuration list for PBXProject "FITTFU Fantasy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52032E571E18BEE700A2DECC;
+			productRefGroup = 52032E611E18BEE700A2DECC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52032E5F1E18BEE700A2DECC /* FITTFU Fantasy */,
+				52032E731E18BEE700A2DECC /* FITTFU FantasyTests */,
+				52032E7E1E18BEE700A2DECC /* FITTFU FantasyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52032E5E1E18BEE700A2DECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				521FBD041E1B354C0081A6C5 /* TODO.rtf in Resources */,
+				52032E6E1E18BEE700A2DECC /* LaunchScreen.storyboard in Resources */,
+				52032E6B1E18BEE700A2DECC /* Assets.xcassets in Resources */,
+				52032E691E18BEE700A2DECC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E721E18BEE700A2DECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E7D1E18BEE700A2DECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52032E5C1E18BEE700A2DECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52F6F69E1E256B3E002AC7FB /* Article.swift in Sources */,
+				523B627F1E22C3BC00FE2327 /* WeeklyStats.swift in Sources */,
+				5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */,
+				5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */,
+				52032E921E18D57900A2DECC /* APIRequest.swift in Sources */,
+				52032E661E18BEE700A2DECC /* LoginViewController.swift in Sources */,
+				52FF9CFA1E1DE92900E90DA7 /* LoadingOverlay.swift in Sources */,
+				523B62721E216D7700FE2327 /* APIMethods.swift in Sources */,
+				523B627B1E22B01200FE2327 /* Lineup.swift in Sources */,
+				52F6F6A21E25B756002AC7FB /* Standing.swift in Sources */,
+				522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */,
+				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
+				529F0A331E26C7BD0030C078 /* ArticleViewController.swift in Sources */,
+				52F6F6A01E25B0B2002AC7FB /* StandingsViewController.swift in Sources */,
+				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
+				52DAF2DF1E1D521300364F98 /* UIImageViewRounded.swift in Sources */,
+				52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */,
+				52AA1B9D1E2427C400CC0CBF /* UIButtonRoundedIcon.swift in Sources */,
+				52DAF2DD1E1D44FD00364F98 /* UIButtonPrimary.swift in Sources */,
+				529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */,
+				523B62791E22A7B300FE2327 /* Week.swift in Sources */,
+				523B62771E21733D00FE2327 /* APIError.swift in Sources */,
+				523B627D1E22B91A00FE2327 /* Player.swift in Sources */,
+				523B62751E216D9B00FE2327 /* League.swift in Sources */,
+				52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E701E18BEE700A2DECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52032E791E18BEE700A2DECC /* FITTFU_FantasyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52032E7B1E18BEE700A2DECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52032E841E18BEE700A2DECC /* FITTFU_FantasyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52032E761E18BEE700A2DECC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52032E5F1E18BEE700A2DECC /* FITTFU Fantasy */;
+			targetProxy = 52032E751E18BEE700A2DECC /* PBXContainerItemProxy */;
+		};
+		52032E811E18BEE700A2DECC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52032E5F1E18BEE700A2DECC /* FITTFU Fantasy */;
+			targetProxy = 52032E801E18BEE700A2DECC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52032E671E18BEE700A2DECC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52032E681E18BEE700A2DECC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52032E6C1E18BEE700A2DECC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52032E6D1E18BEE700A2DECC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52032E861E18BEE700A2DECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		52032E871E18BEE700A2DECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52032E891E18BEE700A2DECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = WR4R323K2L;
+				INFOPLIST_FILE = "FITTFU Fantasy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-Fantasy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		52032E8A1E18BEE700A2DECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = WR4R323K2L;
+				INFOPLIST_FILE = "FITTFU Fantasy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-Fantasy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		52032E8C1E18BEE700A2DECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "FITTFU FantasyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-FantasyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FITTFU Fantasy.app/FITTFU Fantasy";
+			};
+			name = Debug;
+		};
+		52032E8D1E18BEE700A2DECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "FITTFU FantasyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-FantasyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FITTFU Fantasy.app/FITTFU Fantasy";
+			};
+			name = Release;
+		};
+		52032E8F1E18BEE700A2DECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "FITTFU FantasyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-FantasyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "FITTFU Fantasy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		52032E901E18BEE700A2DECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "FITTFU FantasyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JW.FITTFU-FantasyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "FITTFU Fantasy";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52032E5B1E18BEE700A2DECC /* Build configuration list for PBXProject "FITTFU Fantasy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52032E861E18BEE700A2DECC /* Debug */,
+				52032E871E18BEE700A2DECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52032E881E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU Fantasy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52032E891E18BEE700A2DECC /* Debug */,
+				52032E8A1E18BEE700A2DECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52032E8B1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52032E8C1E18BEE700A2DECC /* Debug */,
+				52032E8D1E18BEE700A2DECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52032E8E1E18BEE700A2DECC /* Build configuration list for PBXNativeTarget "FITTFU FantasyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52032E8F1E18BEE700A2DECC /* Debug */,
+				52032E901E18BEE700A2DECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52032E581E18BEE700A2DECC /* Project object */;
+}
