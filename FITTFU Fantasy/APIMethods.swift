@@ -55,9 +55,45 @@ class APIMethods {
         })
     }
     
+    static func getWeeks(leagueId: Int, onSuccess: @escaping ([Week]) -> Void, onError: @escaping onError) {
+        APIRequest.send("/api/leagues/\(leagueId)/weeks", method: .get, data: nil, onSuccess: { (data) in
+            var weeks: Array<Week> = []
+            for week in data["weeks"] as! [[String: Any]] {
+                weeks.append(Week(jsonData: week))
+            }
+            onSuccess(weeks)
+        }, onError: { (error) in
+            onError(error)
+        })
+    }
+    
     static func getCurrentWeek(leagueId: Int, onSuccess: @escaping (Week) -> Void, onError: @escaping onError) {
         APIRequest.send("/api/leagues/\(leagueId)/weeks/current", method: .get, data: nil, onSuccess: { (data) in
             onSuccess(Week(jsonData: data["week"] as! [String: Any]))
+        }, onError: { (error) in
+            onError(error)
+        })
+    }
+    
+    static func getArticles(leagueId: Int, onSuccess: @escaping ([Article]) -> Void, onError: @escaping onError) {
+        APIRequest.send("/api/leagues/\(leagueId)/articles", method: .get, data: nil, onSuccess: { (data) in
+            var articles: Array<Article> = []
+            for article in data["articles"] as! [[String: Any]] {
+                articles.append(Article(json: article))
+            }
+            onSuccess(articles)
+        }, onError: { (error) in
+            onError(error)
+        })
+    }
+    
+    static func getStandings(leagueId: Int, weekId: Int?, onSuccess: @escaping ([Standing]) -> Void, onError: @escaping onError) {
+        APIRequest.send("/api/leagues/\(leagueId)/standings" + ((weekId != nil) ? "?week_id=\(weekId!)" : ""), method: .get, data: nil, onSuccess: { (data) in
+            var standings: Array<Standing> = []
+            for standing in data["standings"] as! [[String: Any]] {
+                standings.append(Standing(json: standing))
+            }
+            onSuccess(standings)
         }, onError: { (error) in
             onError(error)
         })
@@ -125,6 +161,15 @@ class APIMethods {
                 stats.append(WeeklyStats(from: stat))
             }
             onSuccess(stats)
+        }, onError: { (error) in
+            onError(error)
+        })
+    }
+    
+    /* Articles */
+    static func getArticle(articleId: Int, onSuccess: @escaping (Article) -> Void, onError: @escaping onError) {
+        APIRequest.send("/api/articles/\(articleId)", method: .get, data: nil, onSuccess: { (data) in
+            onSuccess(Article(json: data["article"] as! [String: Any]))
         }, onError: { (error) in
             onError(error)
         })

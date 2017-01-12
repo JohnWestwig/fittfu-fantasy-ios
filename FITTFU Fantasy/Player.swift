@@ -50,7 +50,6 @@ class Player: CustomStringConvertible {
         } else {
             image = nil
         }
-        print(json)
         owned = json["owned"] as? Bool ?? false
     }
 }

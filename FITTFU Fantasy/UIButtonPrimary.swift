@@ -22,9 +22,7 @@ struct Themes {
 class UIButtonPrimary: UIButton {
     var myCurrentTheme: Properties = Themes.primary {
         didSet {
-            print("Setting UIButtonPrimary theme")
             style()
-            //setNeedsDisplay()
         }
     }
     

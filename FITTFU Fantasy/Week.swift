@@ -40,7 +40,6 @@ class Week: CustomStringConvertible {
     }
     
     init(jsonData: [String: Any]) {
-        print(jsonData)
         id = jsonData["id"] as! Int
         number = jsonData["number"] as! Int
         editStart = formatDate(dateString: jsonData["edit_start"] as! String)

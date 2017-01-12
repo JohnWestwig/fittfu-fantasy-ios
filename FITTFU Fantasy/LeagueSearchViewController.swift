@@ -91,7 +91,6 @@ class LeagueSearchViewController : UIViewController, UITableViewDelegate, UITabl
                     self.dismiss(animated: true)
                 }
             }, onError: { (error) in
-                print("TESTING", error)
                 switch (error.errorCode) {
                 case 1000:
                     let alert = UIAlertController(title: "Error joining", message: "You have already joined this league", preferredStyle: .alert)

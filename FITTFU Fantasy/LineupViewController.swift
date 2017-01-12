@@ -67,6 +67,7 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerTableViewCell
         let player = myPlayers[indexPath.row]
+        cell.selectionStyle = .none
         cell.playerName.text = player.name
         cell.playerPrice.text = "$\(player.price)"
         cell.playerDetails.text = "\(player.nickname) • \(player.year)"
@@ -92,13 +93,15 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
                 APIMethods.removePlayer(lineupId: self.myLineup.id, playerId: player.id, onSuccess: {
                     self.loadData()
                 }, onError: { (error) in
-                    print(error)
+                    let alert = UIAlertController(title: error.message, message: error.details, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 })
             } else {
                 APIMethods.addPlayer(lineupId: self.myLineup.id, playerId: player.id, onSuccess: {
                     self.loadData()
                 }, onError: { (error) in
-                    let alert = UIAlertController(title: "Could not insert player", message: "Double check that you have sufficient funds for this purhcase", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: error.message, message: error.details, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 })

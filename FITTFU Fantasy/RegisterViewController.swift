@@ -71,18 +71,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.showAlert(title: "Good to go!", message: "Hit OK to proceed to login", actionClicked: {() in
                 self.dismiss(animated: true)
             })
-        }) { (error) in
-            let alertTitle: String = "Could not register"
-            switch (error.errorCode) {
-            case 1: //Unknown error
-                break
-            case 2: //Invalid email
-                self.showAlert(title: alertTitle, message: "Email already in use")
-                break
-            default: //Unknown error code
-                break
-            }
-        }
+        }, onError: { (error) in
+            self.showAlert(title: error.message, message: error.details)
+        })
     }
     
     private func showAlert (title: String, message: String, actionClicked: (() -> Void)? = {}) {

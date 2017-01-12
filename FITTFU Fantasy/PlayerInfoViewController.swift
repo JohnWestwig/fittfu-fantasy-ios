@@ -80,10 +80,10 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
                 cell.myValue.text = myPlayerStats[row - 1].total.description
                 cell.myValue.font = UIFont.boldSystemFont(ofSize: 20.0)
             } else {
-                cell.myValue.text = myPlayerStats[row - 1].categories[col - 2].value.description
+                cell.myValue.text = myPlayerStats[row - 1].categories[col - 2].count.description
                 cell.myValue.font = UIFont.systemFont(ofSize: 18.0)
             }
-            cell.backgroundColor = (row % 2 == 0) ? UIColor.gray : UIColor.white
+            cell.backgroundColor = (row % 2 == 0) ? UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0) : UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.0)
             return cell
         } else if (row != 0 && col == 0) {
             //Sidebar cell:
@@ -110,21 +110,25 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
     //MARK: Actions
     
     @IBAction func onLineupChangeClicked(_ sender: UIButton) {
+        let errorResponse: (APIError) -> Void = { (error) in
+            let alert = UIAlertController(title: error.message, message: error.details, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
         if (myPlayer.owned) {
             APIMethods.removePlayer(lineupId: myLineup.id, playerId: myPlayer.id, onSuccess: {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
                 self.loadPlayerInfo()
             }, onError: { (error) in
-                print(error)
+                errorResponse(error)
             })
         } else {
             APIMethods.addPlayer(lineupId: myLineup.id, playerId: myPlayer.id, onSuccess: {
                 self.loadPlayerInfo()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadLineup"), object: nil)
             }, onError: { (error) in
-                let alert = UIAlertController(title: "Could not insert player", message: "Double check that you have sufficient funds for this purhcase", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                errorResponse(error)
             })
         }
     }
