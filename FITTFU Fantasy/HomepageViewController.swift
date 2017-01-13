@@ -35,6 +35,12 @@ class HomepageViewController: UIViewController, UITableViewDelegate, UITableView
         loadArticles()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndex = myArticleTableView.indexPathForSelectedRow {
+            myArticleTableView.deselectRow(at: selectedIndex, animated: animated)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -52,6 +58,12 @@ class HomepageViewController: UIViewController, UITableViewDelegate, UITableView
             let destinationNavigationController = segue.destination as! UINavigationController
             let destinationArticleView = destinationNavigationController.topViewController as! ArticleViewController
             destinationArticleView.myArticle = myArticles[myArticleTableView.indexPathForSelectedRow!.row]
+        } else if (segue.identifier == "gotoGamesView") {
+            let destinationGamesView = segue.destination as! GamesViewController
+            destinationGamesView.myCurrentWeek = myCurrentWeek
+            destinationGamesView.myLeague = myLeague
+            destinationGamesView.myLineup = myLineup
+            //Do stuff with the games view controller
         }
     }
     
@@ -84,6 +96,10 @@ class HomepageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     @IBAction func myLineupButtonClicked(_ sender: UIButton) {
         self.performSegue(withIdentifier: "gotoLineupView", sender: sender)
+    }
+    @IBAction func myGamesButtonClicked(_ sender: UIButton) {
+        self.performSegue(withIdentifier
+            : "gotoGamesView", sender: sender)
     }
     
     

@@ -40,12 +40,22 @@ class StandingsViewController: UIViewController, UITableViewDelegate, UITableVie
         loadWeeks()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndex = myStandingsTableView.indexPathForSelectedRow {
+            myStandingsTableView.deselectRow(at: selectedIndex, animated: animated)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myStandings.count
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->   UITableViewCell {

@@ -10,7 +10,6 @@ import UIKit
 
 class LeagueTableViewCell : UITableViewCell {
     @IBOutlet weak var myLeagueNameLabel: UILabel!
-    @IBOutlet weak var myLeagueImageView: UIImageView!
     @IBOutlet weak var myLeagueDetailsLabel: UILabel!
 }
 
@@ -33,6 +32,12 @@ class LeagueViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         loadLeagues()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndex = myLeagueTable.indexPathForSelectedRow {
+            myLeagueTable.deselectRow(at: selectedIndex, animated: animated)
+        }
     }
     
     override func didReceiveMemoryWarning() {

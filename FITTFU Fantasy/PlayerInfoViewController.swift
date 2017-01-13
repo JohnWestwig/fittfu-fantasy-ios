@@ -74,6 +74,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
         let col = indexPath.item
         
         if (row != 0 && col != 0) {
+            print(row, col)
             //Regular old value cell:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerStatsValueCell", for: indexPath) as! PlayerStatsCollectionViewValueCell
             if (col == 1) {
@@ -153,7 +154,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.myPlayerImage.image = UIImage(data: imageData)
                     }
                 }
-                
+                self.myPlayerTeam.text = p.teamName
                 self.myEditLineupButton.setTitle(p.owned ? "Drop" : "Add", for: .normal)
                 self.myEditLineupButton.myCurrentTheme = p.owned ? Themes.danger : Themes.success
             }
@@ -163,6 +164,7 @@ class PlayerInfoViewController: UIViewController, UICollectionViewDelegate, UICo
         
         APIMethods.getPlayerStats(playerId: myPlayer.id, leagueId: myLeague.id, onSuccess: { (weeklyStats) in
             self.myPlayerStats = weeklyStats
+            print(self.myPlayerStats)
             DispatchQueue.main.async {
                 self.myPlayerStatsCollection.reloadData()
             }

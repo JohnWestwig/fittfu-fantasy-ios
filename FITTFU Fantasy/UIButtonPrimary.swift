@@ -59,6 +59,5 @@ class UIButtonPrimary: UIButton {
         backgroundColor = myCurrentTheme.backgroundColor
         setTitleColor(UIColor.white, for: .normal)
         setTitleColor(UIColor.brown, for: .highlighted)
-        titleLabel!.font = UIFont(name: "Trebuchet MS", size: 20)
     }
 }

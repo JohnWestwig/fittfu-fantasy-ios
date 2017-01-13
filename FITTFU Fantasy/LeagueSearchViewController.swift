@@ -14,7 +14,6 @@ class LeagueSearchTableViewCell: UITableViewCell {
     
     //MARK: Properties
     @IBOutlet weak var leagueName: UILabel!
-    @IBOutlet weak var leagueImage: UIImageView!
     @IBOutlet weak var leagueDetails: UILabel!
     @IBOutlet weak var leagueJoinButton: UIButton!
     

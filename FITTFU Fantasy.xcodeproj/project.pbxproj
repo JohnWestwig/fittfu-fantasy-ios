@@ -27,6 +27,9 @@
 		5251DFA81E1B12F800019A18 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251DFA71E1B12F800019A18 /* LeagueViewController.swift */; };
 		5280A2EB1E19883600F72C65 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2EA1E19883600F72C65 /* HomepageViewController.swift */; };
 		5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5280A2F01E19C95500F72C65 /* LineupViewController.swift */; };
+		528B4C991E29202F00CBDB10 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B4C981E29202F00CBDB10 /* GamesViewController.swift */; };
+		528B4C9B1E29250C00CBDB10 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B4C9A1E29250C00CBDB10 /* Game.swift */; };
+		528B4C9D1E29255600CBDB10 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B4C9C1E29255600CBDB10 /* Team.swift */; };
 		529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */; };
 		529F0A331E26C7BD0030C078 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529F0A321E26C7BD0030C078 /* ArticleViewController.swift */; };
 		52AA1B9D1E2427C400CC0CBF /* UIButtonRoundedIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA1B9C1E2427C400CC0CBF /* UIButtonRoundedIcon.swift */; };
@@ -84,6 +87,9 @@
 		5251DFA71E1B12F800019A18 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
 		5280A2EA1E19883600F72C65 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5280A2F01E19C95500F72C65 /* LineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupViewController.swift; sourceTree = "<group>"; };
+		528B4C981E29202F00CBDB10 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		528B4C9A1E29250C00CBDB10 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		528B4C9C1E29255600CBDB10 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		529ABF741E1C123D00E2AEF7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		529F0A321E26C7BD0030C078 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		52AA1B9C1E2427C400CC0CBF /* UIButtonRoundedIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonRoundedIcon.swift; sourceTree = "<group>"; };
@@ -198,6 +204,8 @@
 				523B627E1E22C3BC00FE2327 /* WeeklyStats.swift */,
 				52F6F69D1E256B3E002AC7FB /* Article.swift */,
 				52F6F6A11E25B756002AC7FB /* Standing.swift */,
+				528B4C9A1E29250C00CBDB10 /* Game.swift */,
+				528B4C9C1E29255600CBDB10 /* Team.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				529F0A321E26C7BD0030C078 /* ArticleViewController.swift */,
+				528B4C981E29202F00CBDB10 /* GamesViewController.swift */,
 				5280A2EA1E19883600F72C65 /* HomepageViewController.swift */,
 				52ED5F9F1E1C3E280039146F /* LeagueSearchViewController.swift */,
 				5251DFA71E1B12F800019A18 /* LeagueViewController.swift */,
@@ -375,11 +384,13 @@
 				523B62721E216D7700FE2327 /* APIMethods.swift in Sources */,
 				523B627B1E22B01200FE2327 /* Lineup.swift in Sources */,
 				52F6F6A21E25B756002AC7FB /* Standing.swift in Sources */,
+				528B4C9B1E29250C00CBDB10 /* Game.swift in Sources */,
 				522E772B1E1DA11A00869896 /* PlayerStatsLayout.swift in Sources */,
 				52032E641E18BEE700A2DECC /* AppDelegate.swift in Sources */,
 				529F0A331E26C7BD0030C078 /* ArticleViewController.swift in Sources */,
 				52F6F6A01E25B0B2002AC7FB /* StandingsViewController.swift in Sources */,
 				5280A2F11E19C95500F72C65 /* LineupViewController.swift in Sources */,
+				528B4C9D1E29255600CBDB10 /* Team.swift in Sources */,
 				52DAF2DF1E1D521300364F98 /* UIImageViewRounded.swift in Sources */,
 				52ED5FA01E1C3E280039146F /* LeagueSearchViewController.swift in Sources */,
 				52AA1B9D1E2427C400CC0CBF /* UIButtonRoundedIcon.swift in Sources */,
@@ -387,6 +398,7 @@
 				529ABF751E1C123D00E2AEF7 /* RegisterViewController.swift in Sources */,
 				523B62791E22A7B300FE2327 /* Week.swift in Sources */,
 				523B62771E21733D00FE2327 /* APIError.swift in Sources */,
+				528B4C991E29202F00CBDB10 /* GamesViewController.swift in Sources */,
 				523B627D1E22B91A00FE2327 /* Player.swift in Sources */,
 				523B62751E216D9B00FE2327 /* League.swift in Sources */,
 				52DAF2E11E1D5A0000364F98 /* PlayerInfoViewController.swift in Sources */,

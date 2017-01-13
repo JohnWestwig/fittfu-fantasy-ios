@@ -175,6 +175,20 @@ class APIMethods {
             onError(error)
         }, senderView: senderView)
     }
+    
+    /* Games */
+    static func getGames(weekId: Int, lineupId: Int?, onSuccess: @escaping ([Game]) -> Void, onError: @escaping onError, senderView: UIView) {
+        APIRequest.send("/api/weeks/\(weekId)/games" + (lineupId == nil ? "" : "?lineup_id=\(lineupId!)"), method: .get, data: nil, onSuccess: { (data) in
+            print(data)
+            var games: Array<Game> = []
+            for game in data["games"] as! [[String: Any]] {
+                games.append(Game(json: game))
+            }
+            onSuccess(games)
+        }, onError: { (error) in
+            onError(error)
+        }, senderView: senderView)
+    }
 }
 
 

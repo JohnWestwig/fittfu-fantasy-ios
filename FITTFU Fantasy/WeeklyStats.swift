@@ -34,7 +34,7 @@ class WeeklyStats: CustomStringConvertible {
     var categories: Array<StatsCategory>
     
     var description: String {
-        return "Hello"
+        return "Week \(weekNumber):\n\(categories)"
     }
     
     var total: Int {

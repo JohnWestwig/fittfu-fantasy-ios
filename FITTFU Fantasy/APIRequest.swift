@@ -22,8 +22,9 @@ class APIRequest {
     }
     
     //static let baseURL = "http://localhost:8000"
-    //static let baseURL = "http://192.168.1.251:8000"
-    static let baseURL = "http://ec2-54-149-157-80.us-west-2.compute.amazonaws.com:8000"
+    static let baseURL = "http://192.168.1.251:8000"
+    //static let baseURL = "http://ec2-54-149-157-80.us-west-2.compute.amazonaws.com:8000"
+    //static let baseURL = "http://johnwestwig.com:8000"
     
     static func send(_ path: String, method: HTTPMethod, data: [String: String]?, onSuccess: @escaping onSuccess, onError: @escaping onError, senderView: UIView, showLoading: Bool = true) {
         let url: URL = URL(string: baseURL + path)!

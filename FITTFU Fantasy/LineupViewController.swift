@@ -44,6 +44,12 @@ class LineupViewController: UIViewController, UITableViewDataSource, UITableView
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndex = playerTable.indexPathForSelectedRow {
+            playerTable.deselectRow(at: selectedIndex, animated: animated)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
